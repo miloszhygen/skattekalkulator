@@ -43,3 +43,11 @@ _Set income to 648000 NOK_
 [Skattekalkulator 2018](https://skattekalkulator2018.app.skatteetaten.no/)
 
 [Smartepenger skatteberegning 2018](https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018)
+
+
+## TODO
+- add proptypes
+- imporve the `trinnTax` logic
+- add input validation
+- more styling would be nice
+- add all types of Skattesatser
