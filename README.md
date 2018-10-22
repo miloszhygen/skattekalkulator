@@ -13,6 +13,7 @@ You also need [Yarn](https://yarnpkg.com/lang/en/) installed.
 
 ## Start the app in develop mode
 `yarn install`
+
 `yarn start`
 
 ## Building the app

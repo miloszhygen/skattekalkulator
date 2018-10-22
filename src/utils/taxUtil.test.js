@@ -1,29 +1,19 @@
-
-
 import { calculateTax } from './taxUtil';
 
-
-/**
- * TAX = tax tests
- * SST = social security tax tests
- */
-
-describe('Tax calculator 2018', () => {
+describe('test tax calculator 2018', () => {
 
   /*
     Task 1:
     What will be the paid tax when income is below the Exemption card limit (“Frikortgrense”)? Example if income is 50.000.
   */
 
-  it('TAX: tax for 50k NOK gross income pr year ', () => {
+  it('TAX: calculate tax for 50k NOK gross income pr year ', () => {
     const income = 50000;
     const tax = 0;
     const taxToPay = calculateTax(income).tax;
 
     expect(taxToPay).toEqual(tax);
   })
- 
-
 
   /*
     Task 2:
@@ -62,6 +52,8 @@ describe('Tax calculator 2018', () => {
     expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
   })
 
+
+  /* Other tests */
   it('Calculated social security tax for 100k NOK', () => {
     const income = 100000;
     const socialSecurityTax = 8200;
@@ -70,73 +62,62 @@ describe('Tax calculator 2018', () => {
     expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
   })
 
+  it('Calculated social security tax for 55k NOK', () => {
+    const income = 55000;
+    const socialSecurityTax = 88;
+    const socialSecurityTaxToPay = calculateTax(income).socialSecurityTax;
 
-  /*
+    expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
+  })
 
-  */
+  it('Calculated social security tax for 57k NOK', () => {
+    const income = 57000;
+    const socialSecurityTax = 588;
+    const socialSecurityTaxToPay = calculateTax(income).socialSecurityTax;
 
+    expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
+  })
 
-  // it('SST: Calculated social security tax for 55k NOK', () => {
-  //   const income = 55000;
-  //   const socialSecurityTax = 88;
-  //   const socialSecurityTaxToPay = calc.socialSecurityTax(income);
+  it('Calculated social security tax for 65k NOK', () => {
+    const income = 65000;
+    const socialSecurityTax = 2588;
+    const socialSecurityTaxToPay = calculateTax(income).socialSecurityTax;
 
-  //   expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
-  // })
+    expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
+  })
 
-  // it('SST: Calculated social security tax for 57k NOK', () => {
-  //   const income = 57000;
-  //   const socialSecurityTax = 588;
-  //   const socialSecurityTaxToPay = calc.socialSecurityTax(income);
+  it('Calculated social security tax for 67k NOK', () => {
+    const income = 67000;
+    const socialSecurityTax = 3088;
+    const socialSecurityTaxToPay = calculateTax(income).socialSecurityTax;
 
-  //   expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
-  // })
+    expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
+  })
 
-  // it('SST: Calculated social security tax for 65k NOK', () => {
-  //   const income = 65000;
-  //   const socialSecurityTax = 2588;
-  //   const socialSecurityTaxToPay = calc.socialSecurityTax(income);
+  it('Calculated social security tax for 80k NOK', () => {
+    const income = 80000;
+    const socialSecurityTax = 6338;
+    const socialSecurityTaxToPay = calculateTax(income).socialSecurityTax;
 
-  //   expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
-  // })
+    expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
+  })
 
-  // it('SST: Calculated social security tax for 67k NOK', () => {
-  //   const income = 67000;
-  //   const socialSecurityTax = 3088;
-  //   const socialSecurityTaxToPay = calc.socialSecurityTax(income);
+  it('Calculated social security tax for 90k NOK', () => {
+    const income = 90000;
+    const socialSecurityTax = 7380;
+    const socialSecurityTaxToPay = calculateTax(income).socialSecurityTax;
 
-  //   expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
-  // })
+    expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
+  })
 
-
-  // it('SST: Calculated social security tax for 80k NOK', () => {
-  //   const income = 80000;
-  //   const socialSecurityTax = 6338;
-  //   const socialSecurityTaxToPay = calc.socialSecurityTax(income);
-
-  //   expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
-  // })
-
-
-
-
-  // it('SST: Calculated social security tax for 90k NOK', () => {
-  //   const income = 90000;
-  //   const socialSecurityTax = 7380;
-  //   const socialSecurityTaxToPay = calc.socialSecurityTax(income);
-
-  //   expect(socialSecurityTaxToPay).toEqual(socialSecurityTax);
-  // })
-
-
-  it('TAX: tax for 60k NOK gross income pr year ', () => {
+  it('TAX: calculate tax for 60k NOK gross income pr year ', () => {
     const income = 60000;
     const tax = 1338;
     const taxToPay = calculateTax(income).tax;
 
     expect(taxToPay).toEqual(tax);
   })
-  it('TAX: tax for 75k NOK gross income pr year ', () => {
+  it('TAX: calculate tax for 75k NOK gross income pr year ', () => {
     const income = 75000;
     const tax = 5088;
     const taxToPay = calculateTax(income).tax;
@@ -144,22 +125,8 @@ describe('Tax calculator 2018', () => {
     expect(taxToPay).toEqual(tax);
   })
 
-
-
-
-
-
-
-  // it('TAX: tax for 500k NOK gross income pr year ', () => {
-  //   const income = 500000;
-  //   const tax = 130571;
-  //   const taxToPay = calc.calculateTax(income).tax;
-
-  //   expect(taxToPay).toEqual(tax);
-  // })
-
   // Under 169.000 kr skal det ikke betales trinnskatt
-  it('TAX: tax for 150k NOK gross income pr year ', () => {
+  it('TAX: calculate tax for 150k NOK gross income pr year ', () => {
     const income = 150000;
     const tax = 18683;
     const taxToPay = calculateTax(income).tax;
@@ -168,7 +135,7 @@ describe('Tax calculator 2018', () => {
   })
 
   // Under 169.000 kr skal det ikke betales trinnskatt
-  it('TAX: tax for 169k NOK gross income pr year ', () => {
+  it('TAX: calculate tax for 169k NOK gross income pr year ', () => {
     const income = 169000;
     const tax = 22644;
     const taxToPay = calculateTax(income).tax;
@@ -177,7 +144,7 @@ describe('Tax calculator 2018', () => {
   })
 
   // Fra 166.000 kr til 237.900 kr skal det betales 1,40 %
-  it('TAX: tax for 220k NOK gross income pr year ', () => {
+  it('TAX: calculate tax for 220k NOK gross income pr year ', () => {
     const income = 220000;
     const tax = 34311;
     const taxToPay = calculateTax(income).tax;
@@ -185,7 +152,7 @@ describe('Tax calculator 2018', () => {
     expect(taxToPay).toEqual(tax);
   })
   // Fra 237.900 kr til 598.050 kr skal det betales 3,30 %
-  it('TAX: tax for 400k NOK gross income pr year ', () => {
+  it('TAX: calculate tax for 400k NOK gross income pr year ', () => {
     const income = 400000;
     const tax = 96071;
     const taxToPay = calculateTax(income).tax;
@@ -194,7 +161,7 @@ describe('Tax calculator 2018', () => {
   })
 
   // Fra 598.050 kr til 962.050 kr skal det betales 12,40 %
-  it('TAX: tax for 600k NOK gross income pr year ', () => {
+  it('TAX: calculate tax for 600k NOK gross income pr year ', () => {
     const income = 600000;
     const tax = 165249;
     const taxToPay = calculateTax(income).tax;
@@ -202,7 +169,7 @@ describe('Tax calculator 2018', () => {
     expect(taxToPay).toEqual(tax);
   })
   // Fra 962.050 kr skal det betales 15,40 %
-  it('TAX: tax for 1M NOK gross income pr year ', () => {
+  it('TAX: calculate tax for 1M NOK gross income pr year ', () => {
     const income = 1000000;
     const tax = 340787;
     const taxToPay = calculateTax(income).tax;
