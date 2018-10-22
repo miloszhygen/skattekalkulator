@@ -13,6 +13,7 @@ class Skatt extends Component {
   }
 
   componentWillMount(){
+    // Find url parameters if provided and update state with corresponding tax
     const responseStatus = urlSearchParameterUtil(window.location.search);
     this.setState({ taxToPay: calculateTax(responseStatus.income) })
   }

@@ -49,5 +49,5 @@ _Set income to 648000 NOK_
 - add proptypes
 - imporve the `trinnTax` logic
 - add input validation
-- more styling would be nice
+- add awesome and cool styling - _Lets make it popp!_
 - add all types of Skattesatser
