@@ -10,6 +10,7 @@ import './Skatt.css';
 class Skatt extends Component {
   state = {
     finnmark:false,
+    married:false,
     stateIncome:0,
     taxToPay: {}
   }
@@ -57,9 +58,9 @@ class Skatt extends Component {
           />
         </label>
 
+        <hr/>
 
         <label>
-        Rett til Finnmarksfradrag	
           <input
             type="checkbox"
             value=''
@@ -68,8 +69,25 @@ class Skatt extends Component {
               this.setState({finnmark:!this.state.finnmark})
             }}
           />
-
+           Rett til Finnmarksfradrag
         </label>
+
+        <br/>
+
+        <label>
+          <input
+            type="checkbox"
+            value=''
+            checked={this.state.married}
+            onChange={()=>{
+              this.setState({married:!this.state.married})
+            }}
+          />
+          Gift
+        </label>
+
+
+
         <hr/>
         { (income > 0 ) &&
           <div>
