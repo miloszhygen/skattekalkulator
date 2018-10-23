@@ -73,7 +73,8 @@ class Skatt extends Component {
         <hr/>
         { (income > 0 ) &&
           <div>
-            <h3>Skatt: {tax} kr</h3>
+            <h3>Skatt: {tax} kr </h3>
+            <p>{finnmark && '(Finnmarksfradrag)'}</p>
             <hr/>
             <p>Hvorav:</p>
             <p>
