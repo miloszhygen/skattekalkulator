@@ -9,6 +9,8 @@ import './Skatt.css';
 
 class Skatt extends Component {
   state = {
+    finnmark:false,
+    stateIncome:0,
     taxToPay: {}
   }
 
@@ -17,9 +19,14 @@ class Skatt extends Component {
     const responseStatus = urlSearchParameterUtil(window.location.search);
     this.setState({ taxToPay: calculateTax(responseStatus.income) })
   }
-
+  componentDidUpdate(prevProps, prevState){
+    if (prevState.finnmark !== this.state.finnmark) {
+      this.setState({ taxToPay: calculateTax(this.state.stateIncome, this.state.finnmark) })
+    }
+  }
   render() {
     const {
+      finnmark,
       taxToPay: {
         income = 0,
         tax = 0,
@@ -46,8 +53,22 @@ class Skatt extends Component {
             type="text"
             name="income"
             value={income || ''}
-            onChange={(e)=> this.setState({taxToPay: calculateTax(e.target.value)}) }
+            onChange={(e)=> this.setState({taxToPay: calculateTax(e.target.value,finnmark), stateIncome: e.target.value}) }
           />
+        </label>
+
+
+        <label>
+        Rett til Finnmarksfradrag	
+          <input
+            type="checkbox"
+            value=''
+            checked={this.state.finnmark}
+            onChange={()=>{
+              this.setState({finnmark:!this.state.finnmark})
+            }}
+          />
+
         </label>
         <hr/>
         { (income > 0 ) &&

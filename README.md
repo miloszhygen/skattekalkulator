@@ -45,9 +45,27 @@ _Set income to 648000 NOK_
 [Smartepenger skatteberegning 2018](https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018)
 
 
+
+
+
 ## TODO
+- eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
+
 - add proptypes
 - imporve the `trinnTax` logic
 - add input validation
 - add awesome and cool styling - _Lets make it popp!_
 - add all types of Skattesatser
+- add possibility to select month/year calculations
+  - if monthly - show yearly income in visa versa
+- regex numbers to xxx xxx xxx, xx xxxx
+- Slik brukes skattepengene https://www.ssb.no/offentlig-sektor/faktaside/slik-brukes-skattepengene
+
+- show monthly pay before and after tax
+
+
+
+- Særfradrag enslige forsørgere: https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
+
+
+- formuesskatt https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018

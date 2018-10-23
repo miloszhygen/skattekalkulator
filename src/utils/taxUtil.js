@@ -18,7 +18,9 @@ const taxValuesConfig = {
   trinn1Tax: 0.014,
   trinn2Tax: 0.033,
   trinn3Tax: 0.124,
+  trinn3TaxFin: 0.104,
   trinn4Tax: 0.154,
+  finnmarksfradragNok: 15500
 }
 const aboveFrikortLimit = (income) => {
   const { frikortgrense } = taxValuesConfig;
@@ -54,8 +56,8 @@ const calculatedMinstefradrag = (income) => {
   return minstefradrag;
 }
 
-const trinnTax = (income) => {
-  const { trinn0, trinn1, trinn2, trinn3, trinn1Tax, trinn2Tax, trinn3Tax, trinn4Tax } = taxValuesConfig;
+const trinnTax = (income, finnmarksfradrag) => {
+  const { trinn0, trinn1, trinn2, trinn3, trinn1Tax, trinn2Tax, trinn3Tax, trinn3TaxFin, trinn4Tax } = taxValuesConfig;
   /*
     Trinnskatt 101:
     ===============
@@ -69,7 +71,7 @@ const trinnTax = (income) => {
   // Check if income is within the scope of trinnskatt and add corresponding taxation level
   const trinnOne = (((income < trinn1) ? income : trinn1) - trinn0) * trinn1Tax;
   const trinnTwo = (((income < trinn2) ? income : trinn2) - trinn1) * trinn2Tax;
-  const trinnThree = (((income < trinn3) ? income : trinn3) - trinn2) * trinn3Tax;
+  const trinnThree = (((income < trinn3) ? income : trinn3) - trinn2) * ((finnmarksfradrag) ? trinn3TaxFin : trinn3Tax);
   const trinnFour = (income - trinn3) * trinn4Tax;
   // Calculate trinnskatt based on the above values, if values is negative, set variable to 0 else, set to trinnskatt value
   const trinnOneTax = (trinnOne > 0) ? trinnOne : 0;
@@ -91,20 +93,33 @@ const trinnTax = (income) => {
   }
 }
 
- export const calculateTax = (income) => {
-  const { personfradrag } = taxValuesConfig;
+ export const calculateTax = (income, finnmarksfradrag) => {
+
+  const { personfradrag, finnmarksfradragNok } = taxValuesConfig;
+
+
+  let finnmarksfradragValue = 0;
+  let skatteSats = .23;
+
+  if (finnmarksfradrag) {
+    finnmarksfradragValue = finnmarksfradragNok;
+    skatteSats = .195
+  }
+
+
+
   // Tax base is the value you get after substracting minstefradag (45% of income, max 97610 NOK, min 31800 NOK) and personfradrag (54750 NOK)
-  const taxBase = income - calculatedMinstefradrag(income) - personfradrag;
+  const taxBase = income - calculatedMinstefradrag(income) - personfradrag  - finnmarksfradragValue;
   // Make sure the base tax value is grater than 0, if so, calculate 23% of the value (23% is the 2018 base tax constant )
   const validTaxBase = (taxBase > 0)
-    ? (taxBase * .23)
+    ? (taxBase * skatteSats)
     : 0;
   // Add social security tax to the calculated base tax
   const taxWithoutTrinn = validTaxBase + socialSecurityTax(income);
   // Check if the income is above the frikort limit that is 55000 NOK, if not return 0 if else, return the tax with trinn tax
   const taxToPay = (aboveFrikortLimit(income))
     ? 0
-    : taxWithoutTrinn + trinnTax(income).totalTrinnSkatt;
+    : taxWithoutTrinn + trinnTax(income, finnmarksfradrag).totalTrinnSkatt;
 
   return {
     income: income,
