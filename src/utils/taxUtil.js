@@ -20,8 +20,35 @@ const taxValuesConfig = {
   trinn3Tax: 0.124,
   trinn3TaxFin: 0.104,
   trinn4Tax: 0.154,
-  finnmarksfradragNok: 15500
+  finnmarksfradragNok: 15500,
+  skattPercent:.23,
+  skattPercentFin:.195
+
 }
+
+const rightToFinnmarksfradrag = (finnmarksfradrag) => {
+ // Do magic here
+ // add globale skatteSats and set it here
+
+ const { skattPercent, skattPercentFin, finnmarksfradragNok } = taxValuesConfig;
+
+  let finnmarksfradragValue = 0;
+  let skatteSats = skattPercent;
+
+  if (finnmarksfradrag) {
+    finnmarksfradragValue = finnmarksfradragNok;
+    skatteSats = skattPercentFin;
+  }
+
+  return {
+    skatteSats,
+    finnmarksfradragValue
+  }
+
+}
+
+
+
 const aboveFrikortLimit = (income) => {
   const { frikortgrense } = taxValuesConfig;
   // Chack if the income is above or equal to the set frikort limit that is 55000 NOK
@@ -93,27 +120,15 @@ const trinnTax = (income, finnmarksfradrag) => {
   }
 }
 
- export const calculateTax = (income, finnmarksfradrag) => {
-
-  const { personfradrag, finnmarksfradragNok } = taxValuesConfig;
-
-
-  let finnmarksfradragValue = 0;
-  let skatteSats = .23;
-
-  if (finnmarksfradrag) {
-    finnmarksfradragValue = finnmarksfradragNok;
-    skatteSats = .195
-  }
-
-
-
+ export const calculateTax = (incomeData) => {
+  const { income, finnmarksfradrag, married } = incomeData
+  const { personfradrag } = taxValuesConfig;
+  // Make sure skattPercent is right depending on if you live in Finnmark or not, if so, also add finnmarksfradragValue with corresponding value from taxValuesConfig
+  const { finnmarksfradragValue, skatteSats } = rightToFinnmarksfradrag(finnmarksfradrag)
   // Tax base is the value you get after substracting minstefradag (45% of income, max 97610 NOK, min 31800 NOK) and personfradrag (54750 NOK)
   const taxBase = income - calculatedMinstefradrag(income) - personfradrag  - finnmarksfradragValue;
   // Make sure the base tax value is grater than 0, if so, calculate 23% of the value (23% is the 2018 base tax constant )
-  const validTaxBase = (taxBase > 0)
-    ? (taxBase * skatteSats)
-    : 0;
+  const validTaxBase = (taxBase > 0) ? (taxBase * skatteSats) : 0;
   // Add social security tax to the calculated base tax
   const taxWithoutTrinn = validTaxBase + socialSecurityTax(income);
   // Check if the income is above the frikort limit that is 55000 NOK, if not return 0 if else, return the tax with trinn tax

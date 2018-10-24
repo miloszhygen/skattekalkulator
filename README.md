@@ -50,8 +50,15 @@ _Set income to 648000 NOK_
 eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
 
 ## TODO
-- add Gift/Ugift?
+x Send an object into taxcalc function and then deconstruct the object
+x Income as globale obj in test.
+
+x add Gift/Ugift?
+  x add tests
+
+- add age - pensjonister / unge / vanlige?
 - copy this -> https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
+
 
 
 
@@ -73,3 +80,6 @@ eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonn
 
 
 - formuesskatt https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
+
+
+- e2e tests

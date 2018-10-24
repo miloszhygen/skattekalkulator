@@ -72,8 +72,7 @@ class Skatt extends Component {
            Rett til Finnmarksfradrag
         </label>
 
-        <br/>
-
+        {/* <br/>
         <label>
           <input
             type="checkbox"
@@ -84,9 +83,7 @@ class Skatt extends Component {
             }}
           />
           Gift
-        </label>
-
-
+        </label> */}
 
         <hr/>
         { (income > 0 ) &&
