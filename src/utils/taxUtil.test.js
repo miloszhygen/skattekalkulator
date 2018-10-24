@@ -11,17 +11,102 @@ describe('tax calculator 2018', () => {
   //   })
   // })
 
+  describe('have formue married', () => {
+    it('FORMUE: formueskatt for formue of 2M and from Finnmark', () => {
+      const income = {income: 600000, finnmarksfradrag: true, nettoFormue: 3500000, married: true};
+      const expectedTax = {
+        tax: 151110,
+        formueTotal: 4590
+      }
+      const recievedTax = {
+        tax: calculateTax(income).tax,
+        formueTotal: calculateTax(income).formueTotal
+      }
+      expect(recievedTax).toEqual(expectedTax);
+    })
 
+    it('FORMUE: formueskatt for formue of 2M', () => {
+      const income = {income: 600000, finnmarksfradrag: false, nettoFormue: 2000000, married: true};
+      const expectedTax = {
+        tax: 165249,
+        formueTotal: 0
+      }
+      const recievedTax = {
+        tax: calculateTax(income).tax,
+        formueTotal: calculateTax(income).formueTotal
+      }
+      expect(recievedTax).toEqual(expectedTax);
+    })
 
-
-  describe('Married', () => {
-    it('TAX: income 600000 NOK gross income pr year ', () => {
-      const income = {income: 600000, finnmarksfradrag:false, married:true};
-      const tax = 165249;
-      const taxToPay = calculateTax(income).tax;
-      expect(taxToPay).toEqual(tax);
+    it('FORMUE: formueskatt for formue of 3.5M', () => {
+      const income = {income: 150000, finnmarksfradrag: false, nettoFormue: 3500000, married: true};
+      const expectedTax = {
+        tax: 23273,
+        formueTotal: 4590
+      }
+      const recievedTax = {
+        tax:calculateTax(income).tax,
+        formueTotal: calculateTax(income).formueTotal
+      }
+      expect(recievedTax).toEqual(expectedTax);
     })
   })
+
+  describe('have formue not married', () => {
+    it('FORMUE: formueskatt for formue of 1.5M and from Finnmark', () => {
+      const income = {income: 600000, finnmarksfradrag: true, nettoFormue: 1500000};
+      const expectedTax = {
+        tax: 146690,
+        formueTotal: 170
+      }
+      const recievedTax = {
+        tax:calculateTax(income).tax,
+        formueTotal: calculateTax(income).formueTotal
+      }
+      expect(recievedTax).toEqual(expectedTax);
+    })
+    it('FORMUE: formueskatt for formue of 1.5M', () => {
+      const income = {income: 600000, finnmarksfradrag: false, nettoFormue: 1500000};
+      const expectedTax = {
+        tax: 165419,
+        formueTotal: 170
+      }
+      const recievedTax = {
+        tax:calculateTax(income).tax,
+        formueTotal: calculateTax(income).formueTotal
+      }
+      expect(recievedTax).toEqual(expectedTax);
+    })
+
+    it('FORMUE: formueskatt for formue of 2M', () => {
+      const income = {income: 600000, finnmarksfradrag: false, nettoFormue: 2000000};
+      const expectedTax = {
+        tax: 169669,
+        formueTotal: 4420
+      }
+      const recievedTax = {
+        tax: calculateTax(income).tax,
+        formueTotal: calculateTax(income).formueTotal
+      }
+      expect(recievedTax).toEqual(expectedTax);
+    })
+
+
+
+    it('FORMUE: formueskatt for formue of 3.5M', () => {
+      const income = {income: 150000, finnmarksfradrag: false, nettoFormue: 3500000};
+      const expectedTax = {
+        tax: 35853,
+        formueTotal: 17170
+      }
+      const recievedTax = {
+        tax:calculateTax(income).tax,
+        formueTotal: calculateTax(income).formueTotal
+      }
+      expect(recievedTax).toEqual(expectedTax);
+    })
+  })
+
 
 
 

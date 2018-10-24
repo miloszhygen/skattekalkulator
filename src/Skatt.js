@@ -9,30 +9,56 @@ import './Skatt.css';
 
 class Skatt extends Component {
   state = {
-    finnmark:false,
-    married:false,
+    stateFinnmark:false,
+    stateMarried:false,
     stateIncome:0,
+    stateFormue:0,
     taxToPay: {}
   }
 
   componentWillMount(){
+    
+    // ex: [URL]/?income=2200000&formue=2000000
     // Find url parameters if provided and update state with corresponding tax
-    const responseStatus = urlSearchParameterUtil(window.location.search);
-    this.setState({ taxToPay: calculateTax({income: responseStatus.income }) })
+    const {income,formue, finnmark, married} = urlSearchParameterUtil(window.location.search);
+    this.setState({
+      taxToPay: calculateTax({
+        income: income,
+        nettoFormue: formue,
+        finnmarksfradrag: ( finnmark === 'true' ),
+        married: ( married === 'true' )
+      }),
+      stateFormue: formue ,
+      stateIncome: income,
+      stateMarried: married,
+      stateFinnmark: finnmark,
+    })
+    this.updateSkatt()
   }
   componentDidUpdate(prevProps, prevState){
-    if (prevState.finnmark !== this.state.finnmark) {
+    const {stateIncome, stateFinnmark, stateFormue, stateMarried} = this.state;
+    if (prevState.stateFinnmark !== stateFinnmark || prevState.stateMarried !== stateMarried) {
       this.setState({ taxToPay: calculateTax({
-        income: this.state.stateIncome,
-        finnmarksfradrag:this.state.finnmark
+        income: stateIncome,
+        nettoFormue: stateFormue,
+        finnmarksfradrag: stateFinnmark,
+        married:stateMarried
       })})
+      this.updateSkatt()
     }
+  }
+  updateSkatt(){
+    console.log('updating skatt');
+    
   }
   render() {
     const {
-      finnmark,
+      stateFinnmark,
+      stateIncome,
+      stateFormue,
       taxToPay: {
         income = 0,
+        formue = 0,
         tax = 0,
         socialSecurityTax = 0,
         minstefradrag = 0,
@@ -57,47 +83,73 @@ class Skatt extends Component {
             type="text"
             name="income"
             value={income || ''}
-            onChange={(e)=> this.setState({
+            onChange={(e)=> {
+              this.setState({
               taxToPay: calculateTax({
                 income: e.target.value,
-                finnmarksfradrag:finnmark
+                finnmarksfradrag: stateFinnmark
               }),
-              stateIncome: e.target.value})}
+              stateIncome: e.target.value})
+              this.updateSkatt()
+            }}
           />
         </label>
 
         <hr/>
-
+        <label>
+          Din netto formue <br/>
+          <input
+            type="text"
+            name="formue"
+            value={stateFormue || ''}
+            onChange={(e)=> {
+              this.setState({
+              taxToPay: calculateTax({
+                income: stateIncome,
+                finnmarksfradrag: stateFinnmark,
+                nettoFormue: e.target.value
+              }),
+              stateFormue: e.target.value
+            })
+            this.updateSkatt()
+          }}
+          />
+          <br/>
+          <small>Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.</small>
+        </label>
+        <br/>
         <label>
           <input
             type="checkbox"
             value=''
-            checked={this.state.finnmark}
+            checked={this.state.stateFinnmark === 'true'}
             onChange={()=>{
-              this.setState({finnmark:!this.state.finnmark})
+              this.setState({stateFinnmark:!this.state.stateFinnmark})
+              this.updateSkatt()
             }}
           />
-           Rett til Finnmarksfradrag
+           Rett til Finnmarksfradrags
         </label>
 
-        {/* <br/>
+        <br/>
         <label>
           <input
             type="checkbox"
             value=''
-            checked={this.state.married}
+            checked={this.state.stateMarried === 'true'}
             onChange={()=>{
-              this.setState({married:!this.state.married})
+              this.setState({stateMarried:!this.state.stateMarried})
+              this.updateSkatt()
             }}
           />
           Gift
-        </label> */}
+        </label>
 
         <hr/>
         { (income > 0 ) &&
           <div>
             <h3>Skatt: {tax} kr </h3>
-            <p>{finnmark && '(Finnmarksfradrag)'}</p>
+            <p>{stateFinnmark && '(Finnmarksfradrag)'}</p>
             <hr/>
             <p>Hvorav:</p>
             <p>

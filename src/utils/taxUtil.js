@@ -22,30 +22,66 @@ const taxValuesConfig = {
   trinn4Tax: 0.154,
   finnmarksfradragNok: 15500,
   skattPercent:.23,
-  skattPercentFin:.195
-
+  skattPercentFin:.195,
+  formueSkattGrense: 1480000,
+  formueTaxStatSats:0.0015,
+  formueTaxKomSats:0.007
 }
 
 const rightToFinnmarksfradrag = (finnmarksfradrag) => {
- // Do magic here
- // add globale skatteSats and set it here
-
  const { skattPercent, skattPercentFin, finnmarksfradragNok } = taxValuesConfig;
-
   let finnmarksfradragValue = 0;
   let skatteSats = skattPercent;
-
   if (finnmarksfradrag) {
     finnmarksfradragValue = finnmarksfradragNok;
     skatteSats = skattPercentFin;
   }
-
   return {
     skatteSats,
     finnmarksfradragValue
   }
-
 }
+
+
+
+const calculateFormueTax = (formue, married) => {
+  /*
+    Formueskatt 101 Ugift:
+    ================
+    Formuesskatt til kommunen
+      Skatteklasse 0 	0 og over	0,7 %
+      Skatteklasse 1	0 - 1 480 000 kroner	0,0 %
+      Skatteklasse 1	1 480 000 kroner og over	0,7 %
+
+      Formuesskatt til staten
+      Skatteklasse 0, 1
+      0 - 1 480 000 kroner	0,0 %
+      1 480 000 kroner og over	0,15 %
+
+      Gift: gjelder det dobbelte
+  */
+  const { formueTaxStatSats, formueTaxKomSats, formueSkattGrense } = taxValuesConfig;
+
+  let formueTax = 0;
+  let formueTaxStat = 0;
+  let formueTaxKom = 0;
+
+  if (formue > ((married) ? (formueSkattGrense * 2) : formueSkattGrense)) {
+    const formuDiffToLimit = formue - ((married) ? (formueSkattGrense * 2) : formueSkattGrense)
+    formueTaxStat = formuDiffToLimit * formueTaxStatSats;
+    formueTaxKom = formuDiffToLimit * formueTaxKomSats;
+
+    formueTax = formueTaxStat + formueTaxKom;
+  }
+  return {
+    formueTotal:formueTax,
+    stat:formueTaxStat,
+    kommune:formueTaxKom
+  };
+}
+
+
+
 
 
 
@@ -121,7 +157,8 @@ const trinnTax = (income, finnmarksfradrag) => {
 }
 
  export const calculateTax = (incomeData) => {
-  const { income, finnmarksfradrag = false, married } = incomeData
+  const { income, finnmarksfradrag = false, nettoFormue = 0, married = false  } = incomeData
+
   const { personfradrag } = taxValuesConfig;
   // Make sure skattPercent is right depending on if you live in Finnmark or not, if so, also add finnmarksfradragValue with corresponding value from taxValuesConfig
   const { finnmarksfradragValue, skatteSats } = rightToFinnmarksfradrag(finnmarksfradrag)
@@ -134,11 +171,12 @@ const trinnTax = (income, finnmarksfradrag) => {
   // Check if the income is above the frikort limit that is 55000 NOK, if not return 0 if else, return the tax with trinn tax
   const taxToPay = (aboveFrikortLimit(income))
     ? 0
-    : taxWithoutTrinn + trinnTax(income, finnmarksfradrag).totalTrinnSkatt;
+    : taxWithoutTrinn + trinnTax(income, finnmarksfradrag).totalTrinnSkatt + calculateFormueTax(nettoFormue,married).formueTotal;
 
   return {
     income: income,
     tax: Math.round(taxToPay),
+    ...calculateFormueTax(nettoFormue,married),
     taxBase: taxBase,
     taxBeforeTrinn: taxWithoutTrinn,
     minstefradrag: calculatedMinstefradrag(income),

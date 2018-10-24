@@ -24,6 +24,9 @@ The app uses [jest](https://jestjs.io/) for testing.
 
 `yarn test`
 
+## Url parameters
+[http://localhost:3000/?income=600000&formue=3500000&married=true&finnmark=true](http://localhost:3000/?income=600000&formue=3500000&married=true&finnmark=true)
+
 
 ## Demo
 _No set income_
@@ -34,6 +37,10 @@ _Set income to 50000 NOK_
 
 _Set income to 648000 NOK_
 [http://skattekalkulator.surge.sh/?income=648000](http://skattekalkulator.surge.sh/?income=648000)
+
+
+_Set income to 648000 NOK and Formue to 3500000_
+[http://skattekalkulator.surge.sh/?income=648000&formue=3500000](http://skattekalkulator.surge.sh/?income=648000&formue=3500000)
 
 
 ## Resources
@@ -50,11 +57,12 @@ _Set income to 648000 NOK_
 eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
 
 ## TODO
-x Send an object into taxcalc function and then deconstruct the object
-x Income as globale obj in test.
 
-x add Gift/Ugift?
-  x add tests
+- formueskatt
+https://www.skatteetaten.no/satser/formuesskatt/
+  - formuesskatt https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
+  https://www.smartepenger.no/kalkulatorer/912-formuesskattekalkulator
+
 
 - add age - pensjonister / unge / vanlige?
 - copy this -> https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
@@ -70,16 +78,16 @@ x add Gift/Ugift?
 - add all types of Skattesatser
 - add possibility to select month/year calculations
   - if monthly - show yearly income in visa versa
+- show monthly pay before and after tax
 - regex numbers to xxx xxx xxx, xx xxxx
 - Slik brukes skattepengene https://www.ssb.no/offentlig-sektor/faktaside/slik-brukes-skattepengene
-- show monthly pay before and after tax
 
 
 
 - Særfradrag enslige forsørgere: https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
 
 
-- formuesskatt https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
 
 
 - e2e tests
+- aitbnb - linting
