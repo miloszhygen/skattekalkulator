@@ -121,7 +121,7 @@ const trinnTax = (income, finnmarksfradrag) => {
 }
 
  export const calculateTax = (incomeData) => {
-  const { income, finnmarksfradrag, married } = incomeData
+  const { income, finnmarksfradrag = false, married } = incomeData
   const { personfradrag } = taxValuesConfig;
   // Make sure skattPercent is right depending on if you live in Finnmark or not, if so, also add finnmarksfradragValue with corresponding value from taxValuesConfig
   const { finnmarksfradragValue, skatteSats } = rightToFinnmarksfradrag(finnmarksfradrag)

@@ -18,11 +18,14 @@ class Skatt extends Component {
   componentWillMount(){
     // Find url parameters if provided and update state with corresponding tax
     const responseStatus = urlSearchParameterUtil(window.location.search);
-    this.setState({ taxToPay: calculateTax(responseStatus.income) })
+    this.setState({ taxToPay: calculateTax({income: responseStatus.income }) })
   }
   componentDidUpdate(prevProps, prevState){
     if (prevState.finnmark !== this.state.finnmark) {
-      this.setState({ taxToPay: calculateTax(this.state.stateIncome, this.state.finnmark) })
+      this.setState({ taxToPay: calculateTax({
+        income: this.state.stateIncome,
+        finnmarksfradrag:this.state.finnmark
+      })})
     }
   }
   render() {
@@ -54,7 +57,12 @@ class Skatt extends Component {
             type="text"
             name="income"
             value={income || ''}
-            onChange={(e)=> this.setState({taxToPay: calculateTax(e.target.value,finnmark), stateIncome: e.target.value}) }
+            onChange={(e)=> this.setState({
+              taxToPay: calculateTax({
+                income: e.target.value,
+                finnmarksfradrag:finnmark
+              }),
+              stateIncome: e.target.value})}
           />
         </label>
 
