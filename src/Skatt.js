@@ -9,29 +9,33 @@ import './Skatt.css';
 
 class Skatt extends Component {
   state = {
-    stateFinnmark:false,
-    stateMarried:false,
-    stateIncome:0,
-    stateFormue:0,
+    stateFinnmark: false,
+    stateMarried: false,
+    stateIncome: 0,
+    stateFormue: 0,
+    stateFradrag: 0,
     taxToPay: {}
   }
 
   componentWillMount(){
-    
+
     // ex: [URL]/?income=2200000&formue=2000000
     // Find url parameters if provided and update state with corresponding tax
-    const {income,formue, finnmark, married} = urlSearchParameterUtil(window.location.search);
+    const {income,formue, finnmark, married, fradrag} = urlSearchParameterUtil(window.location.search);
     this.setState({
       taxToPay: calculateTax({
         income: income,
         nettoFormue: formue,
         finnmarksfradrag: ( finnmark === 'true' ),
-        married: ( married === 'true' )
+        married: ( married === 'true' ),
+        fradrag: fradrag
+
       }),
       stateFormue: formue ,
       stateIncome: income,
       stateMarried: married,
       stateFinnmark: finnmark,
+      stateFradrag: fradrag,
     })
     this.updateSkatt()
   }
@@ -47,15 +51,21 @@ class Skatt extends Component {
       this.updateSkatt()
     }
   }
+
   updateSkatt(){
     console.log('updating skatt');
-    
+
   }
+
+
+
   render() {
     const {
       stateFinnmark,
       stateIncome,
       stateFormue,
+      stateFradrag,
+      stateMarried,
       taxToPay: {
         income = 0,
         formue = 0,
@@ -82,7 +92,7 @@ class Skatt extends Component {
           <input
             type="text"
             name="income"
-            value={income || ''}
+            value={stateIncome || ''}
             onChange={(e)=> {
               this.setState({
               taxToPay: calculateTax({
@@ -97,34 +107,12 @@ class Skatt extends Component {
 
         <hr/>
         <label>
-          Din netto formue <br/>
-          <input
-            type="text"
-            name="formue"
-            value={stateFormue || ''}
-            onChange={(e)=> {
-              this.setState({
-              taxToPay: calculateTax({
-                income: stateIncome,
-                finnmarksfradrag: stateFinnmark,
-                nettoFormue: e.target.value
-              }),
-              stateFormue: e.target.value
-            })
-            this.updateSkatt()
-          }}
-          />
-          <br/>
-          <small>Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.</small>
-        </label>
-        <br/>
-        <label>
           <input
             type="checkbox"
-            value=''
-            checked={this.state.stateFinnmark === 'true'}
+            value='1000'
+            checked={stateFinnmark}
             onChange={()=>{
-              this.setState({stateFinnmark:!this.state.stateFinnmark})
+              this.setState({stateFinnmark:!stateFinnmark})
               this.updateSkatt()
             }}
           />
@@ -135,15 +123,72 @@ class Skatt extends Component {
         <label>
           <input
             type="checkbox"
-            value=''
-            checked={this.state.stateMarried === 'true'}
+            value={1000}
+            checked={stateMarried}
             onChange={()=>{
-              this.setState({stateMarried:!this.state.stateMarried})
+              this.setState({stateMarried:!stateMarried})
               this.updateSkatt()
             }}
           />
-          Gift
+          Gift {stateMarried}
         </label>
+        <br/>
+        <label>
+          Din netto formue <br/>
+          <input
+            type="text"
+            name="formue"
+            value={stateFormue || ''}
+            onChange={(e)=> {
+              this.setState({
+              taxToPay: calculateTax({
+                income: stateIncome,
+                finnmarksfradrag: stateFinnmark,
+                nettoFormue: e.target.value,
+                fradrag: stateFradrag
+              }),
+              stateFormue: e.target.value
+            })
+            this.updateSkatt()
+          }}
+          />
+          <br/>
+          <small>Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.</small>
+        </label>
+
+
+
+        <br/>
+
+
+         <label>
+         Fradrag (ikke minstefradrag) <br/>
+          <input
+            type="text"
+            name="fradrag"
+            value={stateFradrag || ''}
+            onChange={(e)=> {
+              this.setState({
+              taxToPay: calculateTax({
+                income: stateIncome,
+                finnmarksfradrag: stateFinnmark,
+                nettoFormue: stateFormue,
+                stateFradrag: e.target.value
+              }),
+              stateFradrag: e.target.value
+            })
+            this.updateSkatt()
+          }}
+          />
+          <br/>
+          <small>Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.</small>
+        </label>
+
+
+
+
+
+
 
         <hr/>
         { (income > 0 ) &&

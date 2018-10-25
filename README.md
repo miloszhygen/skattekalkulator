@@ -27,6 +27,17 @@ The app uses [jest](https://jestjs.io/) for testing.
 ## Url parameters
 [http://localhost:3000/?income=600000&formue=3500000&married=true&finnmark=true](http://localhost:3000/?income=600000&formue=3500000&married=true&finnmark=true)
 
+#### Url parametere
+- income: int
+- formue: int
+- married: bool
+- finnmark: bool
+
+
+- spouseformue
+- age
+
+
 
 ## Demo
 _No set income_
@@ -41,6 +52,9 @@ _Set income to 648000 NOK_
 
 _Set income to 648000 NOK and Formue to 3500000_
 [http://skattekalkulator.surge.sh/?income=648000&formue=3500000](http://skattekalkulator.surge.sh/?income=648000&formue=3500000)
+
+
+
 
 
 ## Resources
@@ -63,23 +77,38 @@ https://www.skatteetaten.no/satser/formuesskatt/
   - formuesskatt https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
   https://www.smartepenger.no/kalkulatorer/912-formuesskattekalkulator
 
+---> Put `calculateTax` into updateSkatt() function
+--> formueskatt spouse / age
+  - url param
+  - new value to `calculateTax` -> `spouseFormue`
+  - show onlly spose formuskatt input field if married is hooked off?
+
+
 
 - add age - pensjonister / unge / vanlige?
 - copy this -> https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
 
 
 
-
+CODE IMPORVEMENTS
 - add proptypes
 - imporve the `trinnTax` logic
 - add input validation
+- e2e tests
+- aitbnb - linting
+
+
+STYLE
 - add awesome and cool styling - _Lets make it popp!_
 
+LOGIC
 - add all types of Skattesatser
 - add possibility to select month/year calculations
   - if monthly - show yearly income in visa versa
 - show monthly pay before and after tax
 - regex numbers to xxx xxx xxx, xx xxxx
+
+FUN TO HAVE
 - Slik brukes skattepengene https://www.ssb.no/offentlig-sektor/faktaside/slik-brukes-skattepengene
 
 
@@ -88,6 +117,3 @@ https://www.skatteetaten.no/satser/formuesskatt/
 
 
 
-
-- e2e tests
-- aitbnb - linting

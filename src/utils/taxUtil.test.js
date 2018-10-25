@@ -11,6 +11,73 @@ describe('tax calculator 2018', () => {
   //   })
   // })
 
+
+
+  describe('have fradrag', () => {
+
+
+
+    it('FRADRAG: fradrag 120k', () => {
+      const income = {
+        income: 600000,
+        finnmarksfradrag: false,
+        nettoFormue: 1500000,
+        married: false,
+        fradrag: 120000
+      };
+      const expectedTax = 137819;
+      const recievedTax = calculateTax(income).tax;
+
+      expect(recievedTax).toEqual(expectedTax);
+    })
+    it('FRADRAG: fradrag 120k', () => {
+      const income = {
+        income: 120000,
+        finnmarksfradrag: false,
+        nettoFormue: 1500000,
+        married: false,
+        fradrag: 120000
+      };
+      const expectedTax = 10010;
+      const recievedTax = calculateTax(income).tax;
+
+      expect(recievedTax).toEqual(expectedTax);
+    })
+
+
+    it('FRADRAG: fradrag 120k', () => {
+      const income = {
+        income: 50000,
+        finnmarksfradrag: false,
+        nettoFormue: 1500000,
+        married: false,
+        fradrag: 120000
+      };
+      const expectedTax = 170;
+      const recievedTax = calculateTax(income).tax;
+
+      expect(recievedTax).toEqual(expectedTax);
+    })
+
+    it('FRADRAG: fradrag ', () => {
+      const income = {
+        income: 600000,
+        finnmarksfradrag: false,
+        nettoFormue: 0,
+        married: false,
+        fradrag: 60000
+      };
+      const expectedTax = 151449;
+      const recievedTax = calculateTax(income).tax;
+
+      expect(recievedTax).toEqual(expectedTax);
+    })
+
+  })
+
+
+
+
   describe('have formue married', () => {
     it('FORMUE: formueskatt for formue of 2M and from Finnmark', () => {
       const income = {income: 600000, finnmarksfradrag: true, nettoFormue: 3500000, married: true};
@@ -106,10 +173,6 @@ describe('tax calculator 2018', () => {
       expect(recievedTax).toEqual(expectedTax);
     })
   })
-
-
-
-
 
   describe('have right to Finnmarksfradrag', () => {
     it('TAX: income 50k NOK gross income pr year ', () => {
