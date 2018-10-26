@@ -70,21 +70,7 @@ eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonn
 
 ## TODO
 
-x formueskatt
-https://www.skatteetaten.no/satser/formuesskatt/
-  x formuesskatt https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
-  https://www.smartepenger.no/kalkulatorer/912-formuesskattekalkulator
-
-x Put `calculateTax` into updateSkatt() function
-NEXT --> formueskatt spouse / age
-  x url param
-  x new value to `calculateTax` -> `spouseFormue`
-  x --> rente and kapitalinntekter
-  x show onlly spose formuskatt input field if married is hooked off?
-x BUG in fradrag and gift?
-
-
-- copy this -> https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
+x copy this -> https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
 
 
 
@@ -106,6 +92,7 @@ LOGIC
 - show monthly pay before and after tax
 - regex numbers to xxx xxx xxx, xx xxxx
 - adding values to input also adds value to url
+- show relevant info from the calculations
 
 FUN TO HAVE
 - Slik brukes skattepengene https://www.ssb.no/offentlig-sektor/faktaside/slik-brukes-skattepengene
