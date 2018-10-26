@@ -17,44 +17,32 @@ class Skatt extends Component {
     taxToPay: {}
   }
 
-  componentWillMount(){
-
-    // ex: [URL]/?income=2200000&formue=2000000
-    // Find url parameters if provided and update state with corresponding tax
-    const {income,formue, finnmark, married, fradrag} = urlSearchParameterUtil(window.location.search);
+  componentDidMount(){
+    // TODO: put this in construct?
+    const {income = 0,formue = 0, finnmark, married, fradrag = 0} = urlSearchParameterUtil(window.location.search);
     this.setState({
-      taxToPay: calculateTax({
-        income: income,
-        nettoFormue: formue,
-        finnmarksfradrag: ( finnmark === 'true' ),
-        married: ( married === 'true' ),
-        fradrag: fradrag
-
-      }),
-      stateFormue: formue ,
+      stateFormue: formue,
       stateIncome: income,
-      stateMarried: married,
-      stateFinnmark: finnmark,
+      stateMarried: ( married === 'true' ),
+      stateFinnmark: ( finnmark === 'true' ),
       stateFradrag: fradrag,
     })
-    this.updateSkatt()
   }
   componentDidUpdate(prevProps, prevState){
-    const {stateIncome, stateFinnmark, stateFormue, stateMarried} = this.state;
-    if (prevState.stateFinnmark !== stateFinnmark || prevState.stateMarried !== stateMarried) {
-      this.setState({ taxToPay: calculateTax({
-        income: stateIncome,
-        nettoFormue: stateFormue,
-        finnmarksfradrag: stateFinnmark,
-        married:stateMarried
-      })})
+    if (JSON.stringify(prevState).localeCompare(JSON.stringify(this.state))) {
       this.updateSkatt()
     }
   }
 
   updateSkatt(){
-    console.log('updating skatt');
-
+    const {stateIncome,stateFormue,stateFinnmark,stateMarried,stateFradrag} = this.state;
+    this.setState({ taxToPay: calculateTax({
+      income: stateIncome,
+      nettoFormue: stateFormue,
+      finnmarksfradrag: stateFinnmark,
+      married: stateMarried,
+      fradrag: stateFradrag
+    })})
   }
 
 
@@ -83,6 +71,25 @@ class Skatt extends Component {
     } = this.state;
     return (
       <div>
+
+
+
+        Helper:
+        <br/>
+        <a href="?income=600000&formue=2000000&married=true&finnmark=false&fradrag=120000">
+          G: 137649</a>
+        <br/>
+        <a href="?income=600000&formue=2000000&married=false&finnmark=false&fradrag=120000">
+          U: 142069</a>
+        <br/>
+        <a href="?income=600000&formue=2000000&married=true&finnmark=true&fradrag=120000">
+          FG: 1231200</a>
+        <br/>
+        <a href="?income=600000&formue=2000000&married=false&finnmark=true&fradrag=120000">
+          F: 127540</a>
+
+        <hr/>
+
         <header>
           <h1>Skattekalkulator 2018</h1>
           <h3>Skattekalkulator for allminnelig lønnsintekt*</h3>
@@ -93,15 +100,7 @@ class Skatt extends Component {
             type="text"
             name="income"
             value={stateIncome || ''}
-            onChange={(e)=> {
-              this.setState({
-              taxToPay: calculateTax({
-                income: e.target.value,
-                finnmarksfradrag: stateFinnmark
-              }),
-              stateIncome: e.target.value})
-              this.updateSkatt()
-            }}
+            onChange={(e)=> this.setState({stateIncome: e.target.value})}
           />
         </label>
 
@@ -111,10 +110,7 @@ class Skatt extends Component {
             type="checkbox"
             value='1000'
             checked={stateFinnmark}
-            onChange={()=>{
-              this.setState({stateFinnmark:!stateFinnmark})
-              this.updateSkatt()
-            }}
+            onChange={()=> this.setState({stateFinnmark:!stateFinnmark})}
           />
            Rett til Finnmarksfradrags
         </label>
@@ -125,10 +121,7 @@ class Skatt extends Component {
             type="checkbox"
             value={1000}
             checked={stateMarried}
-            onChange={()=>{
-              this.setState({stateMarried:!stateMarried})
-              this.updateSkatt()
-            }}
+            onChange={()=> this.setState({stateMarried: !stateMarried})}
           />
           Gift {stateMarried}
         </label>
@@ -139,18 +132,7 @@ class Skatt extends Component {
             type="text"
             name="formue"
             value={stateFormue || ''}
-            onChange={(e)=> {
-              this.setState({
-              taxToPay: calculateTax({
-                income: stateIncome,
-                finnmarksfradrag: stateFinnmark,
-                nettoFormue: e.target.value,
-                fradrag: stateFradrag
-              }),
-              stateFormue: e.target.value
-            })
-            this.updateSkatt()
-          }}
+            onChange={(e)=> this.setState({stateFormue: e.target.value })}
           />
           <br/>
           <small>Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.</small>
@@ -167,18 +149,7 @@ class Skatt extends Component {
             type="text"
             name="fradrag"
             value={stateFradrag || ''}
-            onChange={(e)=> {
-              this.setState({
-              taxToPay: calculateTax({
-                income: stateIncome,
-                finnmarksfradrag: stateFinnmark,
-                nettoFormue: stateFormue,
-                stateFradrag: e.target.value
-              }),
-              stateFradrag: e.target.value
-            })
-            this.updateSkatt()
-          }}
+            onChange={(e)=>this.setState({ stateFradrag: e.target.value})}
           />
           <br/>
           <small>Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.</small>

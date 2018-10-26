@@ -11,6 +11,22 @@ describe('tax calculator 2018', () => {
   //   })
   // })
 
+  describe('Test test', () => {
+    it('test', () => {
+      const income = {
+        income: 600000,
+        finnmarksfradrag: false,
+        nettoFormue: 2000000,
+        married: false,
+        fradrag: 120000
+      };
+      const expectedTax = 142069;
+      const recievedTax = calculateTax(income).tax;
+
+      expect(recievedTax).toEqual(expectedTax);
+    })
+  })
+
 
 
   describe('have fradrag', () => {

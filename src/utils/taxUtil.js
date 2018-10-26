@@ -46,9 +46,10 @@ const rightToFinnmarksfradrag = (finnmarksfradrag) => {
 
 const calculateFormueTax = (formue, married) => {
   /*
-    Formueskatt 101 Ugift:
+    Formueskatt 101:
     ================
-    Formuesskatt til kommunen
+    Formuesskatt til kommunen UGIFT
+    -------------------------------
       Skatteklasse 0 	0 og over	0,7 %
       Skatteklasse 1	0 - 1 480 000 kroner	0,0 %
       Skatteklasse 1	1 480 000 kroner og over	0,7 %
@@ -58,7 +59,18 @@ const calculateFormueTax = (formue, married) => {
       0 - 1 480 000 kroner	0,0 %
       1 480 000 kroner og over	0,15 %
 
-      Gift: gjelder det dobbelte
+
+    Formuesskatt til kommunen GIFT
+    -------------------------------
+      Skatteklasse 0 	0 og over	0,7 %
+      Skatteklasse 1	0 -  2 960 000 kroner	0,0 %
+      Skatteklasse 1	 2 960 000 kroner og over	0,7 %
+
+      Formuesskatt til staten
+      Skatteklasse 0, 1
+      0 -  2 960 000 kroner	0,0 %
+      2 960 000 kroner og over	0,15 %
+
   */
   const { formueTaxStatSats, formueTaxKomSats, formueSkattGrense } = taxValuesConfig;
 
@@ -86,14 +98,15 @@ const calculateFormueTax = (formue, married) => {
 
 
 const aboveFrikortLimit = (income) => {
+  // Frikort linit 55 000 Nok
   const { frikortgrense } = taxValuesConfig;
   // Chack if the income is above or equal to the set frikort limit that is 55000 NOK
  return (income <= frikortgrense)
 }
 
 const checkIfSocialSecurityTaxIsWithin25PercentOfIncome = (income) => {
-  const { trygdeavgiftSats, trygdeavgiftMin } = taxValuesConfig;
   // (income * 8.2%) / (income - 54650) needs to be higher than 25% to make this logic become true
+  const { trygdeavgiftSats, trygdeavgiftMin } = taxValuesConfig;
   return (income * trygdeavgiftSats) / (income - trygdeavgiftMin) > 0.25;
 }
 
@@ -158,7 +171,7 @@ const trinnTax = (income, finnmarksfradrag) => {
 
  export const calculateTax = (incomeData) => {
   const { income, finnmarksfradrag = false, nettoFormue = 0, married = false, fradrag = 0  } = incomeData
-    
+
   const { personfradrag } = taxValuesConfig;
   // Make sure skattPercent is right depending on if you live in Finnmark or not, if so, also add finnmarksfradragValue with corresponding value from taxValuesConfig
   const { finnmarksfradragValue, skatteSats } = rightToFinnmarksfradrag(finnmarksfradrag)

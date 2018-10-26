@@ -32,9 +32,7 @@ The app uses [jest](https://jestjs.io/) for testing.
 - formue: int
 - married: bool
 - finnmark: bool
-
-
-- spouseformue
+- fradrag
 - age
 
 
@@ -72,17 +70,17 @@ eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonn
 
 ## TODO
 
-- formueskatt
+x formueskatt
 https://www.skatteetaten.no/satser/formuesskatt/
-  - formuesskatt https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
+  x formuesskatt https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
   https://www.smartepenger.no/kalkulatorer/912-formuesskattekalkulator
 
----> Put `calculateTax` into updateSkatt() function
+x Put `calculateTax` into updateSkatt() function
 --> formueskatt spouse / age
   - url param
   - new value to `calculateTax` -> `spouseFormue`
   - show onlly spose formuskatt input field if married is hooked off?
-
+x BUG in fradrag and gift?
 
 
 - add age - pensjonister / unge / vanlige?
@@ -107,6 +105,7 @@ LOGIC
   - if monthly - show yearly income in visa versa
 - show monthly pay before and after tax
 - regex numbers to xxx xxx xxx, xx xxxx
+- adding values to input also adds value to url
 
 FUN TO HAVE
 - Slik brukes skattepengene https://www.ssb.no/offentlig-sektor/faktaside/slik-brukes-skattepengene
