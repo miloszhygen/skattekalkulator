@@ -76,14 +76,14 @@ https://www.skatteetaten.no/satser/formuesskatt/
   https://www.smartepenger.no/kalkulatorer/912-formuesskattekalkulator
 
 x Put `calculateTax` into updateSkatt() function
---> formueskatt spouse / age
-  - url param
-  - new value to `calculateTax` -> `spouseFormue`
-  - show onlly spose formuskatt input field if married is hooked off?
+NEXT --> formueskatt spouse / age
+  x url param
+  x new value to `calculateTax` -> `spouseFormue`
+  x --> rente and kapitalinntekter
+  x show onlly spose formuskatt input field if married is hooked off?
 x BUG in fradrag and gift?
 
 
-- add age - pensjonister / unge / vanlige?
 - copy this -> https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
 
 
@@ -109,6 +109,7 @@ LOGIC
 
 FUN TO HAVE
 - Slik brukes skattepengene https://www.ssb.no/offentlig-sektor/faktaside/slik-brukes-skattepengene
+- add age - pensjonister / unge / vanlige?
 
 
 

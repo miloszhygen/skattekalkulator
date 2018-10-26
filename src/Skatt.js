@@ -14,18 +14,20 @@ class Skatt extends Component {
     stateIncome: 0,
     stateFormue: 0,
     stateFradrag: 0,
+    stateKapital: 0,
     taxToPay: {}
   }
 
   componentDidMount(){
     // TODO: put this in construct?
-    const {income = 0,formue = 0, finnmark, married, fradrag = 0} = urlSearchParameterUtil(window.location.search);
+    const {income = 0,formue = 0, finnmark, married, fradrag = 0, kapital = 0} = urlSearchParameterUtil(window.location.search);
     this.setState({
-      stateFormue: formue,
-      stateIncome: income,
+      stateFormue: parseInt(formue, 10),
+      stateIncome: parseInt(income, 10),
       stateMarried: ( married === 'true' ),
       stateFinnmark: ( finnmark === 'true' ),
-      stateFradrag: fradrag,
+      stateFradrag: parseInt(fradrag, 10),
+      stateKapital: parseInt(kapital, 10)
     })
   }
   componentDidUpdate(prevProps, prevState){
@@ -35,13 +37,14 @@ class Skatt extends Component {
   }
 
   updateSkatt(){
-    const {stateIncome,stateFormue,stateFinnmark,stateMarried,stateFradrag} = this.state;
+    const {stateIncome,stateFormue,stateFinnmark,stateMarried,stateFradrag,stateKapital} = this.state;
     this.setState({ taxToPay: calculateTax({
       income: stateIncome,
       nettoFormue: stateFormue,
       finnmarksfradrag: stateFinnmark,
       married: stateMarried,
-      fradrag: stateFradrag
+      fradrag: stateFradrag,
+      kapital: stateKapital,
     })})
   }
 
@@ -54,6 +57,7 @@ class Skatt extends Component {
       stateFormue,
       stateFradrag,
       stateMarried,
+      stateKapital,
       taxToPay: {
         income = 0,
         formue = 0,
@@ -74,7 +78,7 @@ class Skatt extends Component {
 
 
 
-        Helper:
+        Helpere:
         <br/>
         <a href="?income=600000&formue=2000000&married=true&finnmark=false&fradrag=120000">
           G: 137649</a>
@@ -87,6 +91,27 @@ class Skatt extends Component {
         <br/>
         <a href="?income=600000&formue=2000000&married=false&finnmark=true&fradrag=120000">
           F: 127540</a>
+        <br/>
+
+
+
+         {/* income: 600000,
+        finnmarksfradrag: true,
+        nettoFormue: 3500000,
+        married: true,
+        fradrag: 200000,
+        kapital: 120000
+
+
+       income: 600000,
+        finnmarksfradrag: true,
+        nettoFormue: 3500000,
+        married: true,
+        fradrag: 200000,
+        kapital: 120000*/}
+
+
+        <a href="?income=600000&formue=3500000&married=true&finnmark=true&fradrag=200000&kapital=120000">KU: 135510</a>
 
         <hr/>
 
@@ -100,7 +125,7 @@ class Skatt extends Component {
             type="text"
             name="income"
             value={stateIncome || ''}
-            onChange={(e)=> this.setState({stateIncome: e.target.value})}
+            onChange={(e)=> this.setState({stateIncome: parseInt(e.target.value,10) || 0})}
           />
         </label>
 
@@ -126,13 +151,31 @@ class Skatt extends Component {
           Gift {stateMarried}
         </label>
         <br/>
+
+
+
+        <label>
+          Rente og kapitalinntekter <br/>
+          <input
+            type="text"
+            name="formue"
+            value={stateKapital || ''}
+            onChange={(e)=> this.setState({stateKapital: parseInt(e.target.value,10) || 0  })}
+          />
+          <br/>
+          <small>Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.</small>
+        </label>
+
+
+
+        <br/>
         <label>
           Din netto formue <br/>
           <input
             type="text"
             name="formue"
             value={stateFormue || ''}
-            onChange={(e)=> this.setState({stateFormue: e.target.value })}
+            onChange={(e)=> this.setState({stateFormue: parseInt(e.target.value,10) || 0 })}
           />
           <br/>
           <small>Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.</small>
@@ -149,7 +192,7 @@ class Skatt extends Component {
             type="text"
             name="fradrag"
             value={stateFradrag || ''}
-            onChange={(e)=>this.setState({ stateFradrag: e.target.value})}
+            onChange={(e)=>this.setState({ stateFradrag:parseInt(e.target.value,10) || 0})}
           />
           <br/>
           <small>Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.</small>

@@ -29,10 +29,71 @@ describe('tax calculator 2018', () => {
 
 
 
+
+  
+  describe('Kapitalinntekter', () => {
+    it('kapital 120000, income 600k, fradrag 120k', () => {
+      const income = {
+        income: 600000,
+        finnmarksfradrag: false,
+        nettoFormue: 2000000,
+        married: false,
+        fradrag: 120000,
+        kapital: 120000
+      };
+      const expectedTax = 169669;
+      const recievedTax = calculateTax(income).tax;
+
+      expect(recievedTax).toEqual(expectedTax);
+    })
+    it('kapital 120000', () => {
+      const income = {
+        income: 600000,
+        finnmarksfradrag: false,
+        nettoFormue: 0,
+        married: false,
+        fradrag: 0,
+        kapital: 120000
+      };
+      const expectedTax = 192849;
+      const recievedTax = calculateTax(income).tax;
+
+      expect(recievedTax).toEqual(expectedTax);
+    })
+    it('kapital 120000, income 600k Marrid Finnmark', () => {
+      const income = {
+        income: 600000,
+        finnmarksfradrag: true,
+        nettoFormue: 3500000,
+        married: true,
+        fradrag: 200000,
+        kapital: 120000
+      };
+      const expectedTax = 135510;
+      const recievedTax = calculateTax(income).tax;
+
+      expect(recievedTax).toEqual(expectedTax);
+    })
+    it('kapital 120000, income 600k Marrid Finnmark', () => {
+      const income = {
+        income: 75000,
+        finnmarksfradrag: true,
+        nettoFormue: 3500000,
+        married: true,
+        fradrag: 200000,
+        kapital: 120000
+      };
+      const expectedTax = 9678;
+      const recievedTax = calculateTax(income).tax;
+
+      expect(recievedTax).toEqual(expectedTax);
+    })
+
+
+
+  })
+
   describe('have fradrag', () => {
-
-
-
     it('FRADRAG: fradrag 120k', () => {
       const income = {
         income: 600000,
@@ -90,9 +151,6 @@ describe('tax calculator 2018', () => {
     })
 
   })
-
-
-
 
   describe('have formue married', () => {
     it('FORMUE: formueskatt for formue of 2M and from Finnmark', () => {
