@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 //Import utils
 import { calculateTax } from './utils/taxUtil'
@@ -8,27 +9,22 @@ import './Skatt.css';
 // TODO: Proptypes
 
 class Skatt extends Component {
-  state = {
-    stateFinnmark: false,
-    stateMarried: false,
-    stateIncome: 0,
-    stateFormue: 0,
-    stateFradrag: 0,
-    stateKapital: 0,
-    taxToPay: {}
-  }
-
-  componentDidMount(){
-    // TODO: put this in construct?
+  constructor(){
+    super()
     const {income = 0,formue = 0, finnmark, married, fradrag = 0, kapital = 0} = urlSearchParameterUtil(window.location.search);
-    this.setState({
-      stateFormue: parseInt(formue, 10),
+    this.state = {
+      stateFormue: formue,
       stateIncome: parseInt(income, 10),
       stateMarried: ( married === 'true' ),
       stateFinnmark: ( finnmark === 'true' ),
       stateFradrag: parseInt(fradrag, 10),
-      stateKapital: parseInt(kapital, 10)
-    })
+      stateKapital: parseInt(kapital, 10),
+      taxToPay: {}
+    }
+  }
+
+  componentDidMount(){
+    this.updateSkatt()
   }
   componentDidUpdate(prevProps, prevState){
     if (JSON.stringify(prevState).localeCompare(JSON.stringify(this.state))) {
@@ -192,7 +188,7 @@ class Skatt extends Component {
             type="text"
             name="fradrag"
             value={stateFradrag || ''}
-            onChange={(e)=>this.setState({ stateFradrag:parseInt(e.target.value,10) || 0})}
+            onChange={(e)=>this.setState({ stateFradrag:e.target.value})}
           />
           <br/>
           <small>Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.</small>
@@ -233,4 +229,15 @@ class Skatt extends Component {
   }
 }
 
+Skatt.propTypes = {
+  stateFinnmark: PropTypes.bool,
+  stateIncome: PropTypes.number,
+  stateFormue: PropTypes.number,
+  stateFradrag: PropTypes.number,
+  stateMarried: PropTypes.bool,
+  stateKapital: PropTypes.number,
+  taxToPay: PropTypes.object
+};
+
 export default Skatt;
+

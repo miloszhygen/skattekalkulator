@@ -69,13 +69,8 @@ _Set income to 648000 NOK and Formue to 3500000_
 eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
 
 ## TODO
-
-x copy this -> https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
-
-
-
 CODE IMPORVEMENTS
-- add proptypes
+x add proptypes
 - imporve the `trinnTax` logic
 - add input validation
 - e2e tests

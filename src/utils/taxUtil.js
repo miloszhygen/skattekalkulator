@@ -176,7 +176,7 @@ const trinnTax = (income, finnmarksfradrag) => {
   // Make sure skattPercent is right depending on if you live in Finnmark or not, if so, also add finnmarksfradragValue with corresponding value from taxValuesConfig
   const { finnmarksfradragValue, skatteSats } = rightToFinnmarksfradrag(finnmarksfradrag)
   // Tax base is the value you get after substracting minstefradag (45% of income, max 97610 NOK, min 31800 NOK) and personfradrag (54750 NOK)
-  const taxBase = income - calculatedMinstefradrag(income) - personfradrag  - finnmarksfradragValue - fradrag + kapital;  
+  const taxBase = income - calculatedMinstefradrag(income) - personfradrag  - finnmarksfradragValue - fradrag + kapital;
   // Make sure the base tax value is grater than 0, if so, calculate 23% of the value (23% is the 2018 base tax constant )
   const validTaxBase = (taxBase > 0) ? (taxBase * skatteSats) : 0;
   // Add social security tax to the calculated base tax
