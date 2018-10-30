@@ -30,7 +30,7 @@ describe('tax calculator 2018', () => {
 
 
 
-  
+
   describe('Kapitalinntekter', () => {
     it('kapital 120000, income 600k, fradrag 120k', () => {
       const income = {
@@ -74,7 +74,7 @@ describe('tax calculator 2018', () => {
 
       expect(recievedTax).toEqual(expectedTax);
     })
-    it('kapital 120000, income 600k Marrid Finnmark', () => {
+    it('kapital 120000, income 600k Marrid Finnmark ', () => {
       const income = {
         income: 75000,
         finnmarksfradrag: true,
@@ -107,7 +107,7 @@ describe('tax calculator 2018', () => {
 
       expect(recievedTax).toEqual(expectedTax);
     })
-    it('FRADRAG: fradrag 120k', () => {
+    it('FRADRAG: fradrag 120k incopm 120000', () => {
       const income = {
         income: 120000,
         finnmarksfradrag: false,
@@ -122,7 +122,7 @@ describe('tax calculator 2018', () => {
     })
 
 
-    it('FRADRAG: fradrag 120k', () => {
+    it('FRADRAG: fradrag 120k income 50000', () => {
       const income = {
         income: 50000,
         finnmarksfradrag: false,

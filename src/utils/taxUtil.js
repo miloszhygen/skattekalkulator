@@ -29,7 +29,7 @@ const taxValuesConfig = {
 }
 
 const rightToFinnmarksfradrag = (finnmarksfradrag) => {
- const { skattPercent, skattPercentFin, finnmarksfradragNok } = taxValuesConfig;
+  const { skattPercent, skattPercentFin, finnmarksfradragNok } = taxValuesConfig;
   let finnmarksfradragValue = 0;
   let skatteSats = skattPercent;
   if (finnmarksfradrag) {
@@ -101,7 +101,7 @@ const aboveFrikortLimit = (income) => {
   // Frikort linit 55 000 Nok
   const { frikortgrense } = taxValuesConfig;
   // Chack if the income is above or equal to the set frikort limit that is 55000 NOK
- return (income <= frikortgrense)
+  return (income <= frikortgrense)
 }
 
 const checkIfSocialSecurityTaxIsWithin25PercentOfIncome = (income) => {
@@ -169,7 +169,7 @@ const trinnTax = (income, finnmarksfradrag) => {
   }
 }
 
- export const calculateTax = (incomeData) => {
+export const calculateTax = (incomeData) => {
   const { income = 0, finnmarksfradrag = false, nettoFormue = 0, married = false, fradrag = 0, kapital = 0  } = incomeData
   
   const { personfradrag } = taxValuesConfig;

@@ -9,7 +9,7 @@ import './Skatt.css';
 // TODO: Proptypes
 
 class Skatt extends Component {
-  constructor(){
+  constructor () {
     super()
     const {income = 0,formue = 0, finnmark, married, fradrag = 0, kapital = 0} = urlSearchParameterUtil(window.location.search);
     this.state = {
@@ -19,20 +19,22 @@ class Skatt extends Component {
       stateFinnmark: ( finnmark === 'true' ),
       stateFradrag: parseInt(fradrag, 10),
       stateKapital: parseInt(kapital, 10),
-      taxToPay: {}
+        taxToPay: {}
     }
   }
 
-  componentDidMount(){
+  componentDidMount () {
     this.updateSkatt()
   }
-  componentDidUpdate(prevProps, prevState){
+
+
+  componentDidUpdate (prevProps, prevState) {
     if (JSON.stringify(prevState).localeCompare(JSON.stringify(this.state))) {
       this.updateSkatt()
     }
   }
 
-  updateSkatt(){
+  updateSkatt () {
     const {stateIncome,stateFormue,stateFinnmark,stateMarried,stateFradrag,stateKapital} = this.state;
     this.setState({ taxToPay: calculateTax({
       income: stateIncome,
@@ -46,7 +48,7 @@ class Skatt extends Component {
 
 
 
-  render() {
+  render () {
     const {
       stateFinnmark,
       stateIncome,
@@ -91,7 +93,7 @@ class Skatt extends Component {
 
 
 
-         {/* income: 600000,
+        {/* income: 600000,
         finnmarksfradrag: true,
         nettoFormue: 3500000,
         married: true,
@@ -129,7 +131,7 @@ class Skatt extends Component {
         <label>
           <input
             type="checkbox"
-            value='1000'
+            value="1000"
             checked={stateFinnmark}
             onChange={()=> this.setState({stateFinnmark:!stateFinnmark})}
           />
@@ -182,7 +184,7 @@ class Skatt extends Component {
         <br/>
 
 
-         <label>
+        <label>
          Fradrag (ikke minstefradrag) <br/>
           <input
             type="text"
