@@ -24,7 +24,11 @@
     "Promise": true,
     "Symbol": true,
     "ArrayBuffer": true,
-    "Uint8Array": true
+    "Uint8Array": true,
+    "page": true,
+    "browser": true,
+    "context": true,
+    "jestPuppeteer": true
   },
   "rules": {
     "indent": ["error", 2, {

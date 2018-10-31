@@ -71,17 +71,16 @@ eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonn
 ## TODO
 CODE IMPORVEMENTS
 x add proptypes
-- imporve the `trinnTax` logic
 - add input validation
-- e2e tests
-- aitbnb - linting
+x e2e tests
+x aitbnb - linting
 
 
 STYLE
 - add awesome and cool styling - _Lets make it popp!_
 
 LOGIC
-- add all types of Skattesatser
+- imporve the `trinnTax` logic
 - add possibility to select month/year calculations
   - if monthly - show yearly income in visa versa
 - show monthly pay before and after tax
@@ -99,3 +98,5 @@ FUN TO HAVE
 
 
 
+### Version 2
+- add all types of Skattesatser
