@@ -6,6 +6,8 @@
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
     "eslint-plugin-jest": "^21.26.2",
     "jest-puppeteer": "^3.4.0",
     "puppeteer": "^1.9.0",
@@ -16,7 +18,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test:local": "react-scripts test",
+    "test": "jest src/",
     "e2e:local": "jest -c e2e-tests/jest.config.js --verbose --watch",
     "e2e": "jest -c e2e-tests/jest.config.js"
   },
