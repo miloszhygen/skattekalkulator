@@ -71,7 +71,8 @@ eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonn
 ## TODO
 CODE IMPORVEMENTS
 x add proptypes
-- add input validation
+x enzyme testing
+  x use the setupTest.js
 x e2e tests
 x aitbnb - linting
 
@@ -81,6 +82,8 @@ STYLE
 
 LOGIC
 - imporve the `trinnTax` logic
+- add input validation
+
 - add possibility to select month/year calculations
   - if monthly - show yearly income in visa versa
 - show monthly pay before and after tax
