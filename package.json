@@ -1,7 +1,8 @@
 {
   "name": "skatt",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "license": "",
   "dependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
@@ -20,8 +21,8 @@
     "build": "react-scripts build",
     "test:local": "react-scripts test",
     "test": "jest src/",
-    "e2e:local": "jest -c e2e-tests/jest.config.js --verbose --watch",
-    "e2e": "jest -c e2e-tests/jest.config.js"
+    "test:e2e:local": "jest -c e2e-tests/jest.config.js --verbose --watch",
+    "test:e2e": "jest -c e2e-tests/jest.config.js"
   },
   "eslintConfig": {
     "extends": "react-app"
