@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 //Import utils
 import { calculateTax } from './utils/taxUtil'
 import { urlSearchParameterUtil } from './utils/urlSearchParameterUtil'
-import './Skatt.css';
+// import './Skatt.css';
+
+// Import setTypes
+import { YEARLY, MONTHLY } from './helpers/setTypes'
+
 
 // TODO: Proptypes
 
@@ -19,7 +23,8 @@ class Skatt extends Component {
       stateFinnmark: ( finnmark === 'true' ),
       stateFradrag: parseInt(fradrag, 10),
       stateKapital: parseInt(kapital, 10),
-        taxToPay: {}
+      taxToPay: {},
+      incomePr: YEARLY
     }
   }
 
@@ -35,7 +40,7 @@ class Skatt extends Component {
   }
 
   updateSkatt () {
-    const {stateIncome,stateFormue,stateFinnmark,stateMarried,stateFradrag,stateKapital} = this.state;
+    const {stateIncome,stateFormue,stateFinnmark,stateMarried,stateFradrag,stateKapital,incomePr} = this.state;
     this.setState({ taxToPay: calculateTax({
       income: stateIncome,
       nettoFormue: stateFormue,
@@ -43,10 +48,13 @@ class Skatt extends Component {
       married: stateMarried,
       fradrag: stateFradrag,
       kapital: stateKapital,
+      incomePr: incomePr,
     })})
   }
 
-
+  // handleOptionChange (changeEvent) {
+  //   this.setState({ selectedOption: changeEvent.target.value });
+  // }
 
   render () {
     const {
@@ -71,11 +79,20 @@ class Skatt extends Component {
         }={}
       }={}
     } = this.state;
+
     return (
       <div>
 
 
 
+
+
+
+
+
+
+
+        <br/>
         Helpere:
         <br/>
         <a href="?income=600000&formue=2000000&married=true&finnmark=false&fradrag=120000">
@@ -126,6 +143,24 @@ class Skatt extends Component {
             onChange={(e)=> this.setState({stateIncome: parseInt(e.target.value,10) || 0})}
           />
         </label>
+        <label>
+          <input type="radio" value={YEARLY}
+            checked={this.state.incomePr === YEARLY}
+            onChange={(e) => this.setState({ incomePr: e.target.value })} />
+              Årlig
+        </label>
+
+        <label>
+          <input type="radio" value={MONTHLY}
+            checked={this.state.incomePr === MONTHLY}
+            onChange={(e) => this.setState({ incomePr: e.target.value })} />
+              Månedlig
+        </label>
+
+        <br/>
+        {this.state.incomePr === MONTHLY &&
+          <div>Årlig inntekt: {income}</div>
+        }
 
         <hr/>
         <label>
@@ -142,7 +177,7 @@ class Skatt extends Component {
         <label>
           <input
             type="checkbox"
-            value={1000}
+            value="1000"
             checked={stateMarried}
             onChange={()=> this.setState({stateMarried: !stateMarried})}
           />
@@ -163,6 +198,9 @@ class Skatt extends Component {
           <br/>
           <small>Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.</small>
         </label>
+
+
+
 
 
 

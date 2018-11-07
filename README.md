@@ -69,12 +69,10 @@ _Set income to 648000 NOK and Formue to 3500000_
 eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
 
 ## TODO
-CODE IMPORVEMENTS
-x add proptypes
-x enzyme testing
-  x use the setupTest.js
-x e2e tests
-x aitbnb - linting
+
+x add possibility to select month/year calculations
+  x if monthly - show yearly income in visa versa
+
 
 
 STYLE
@@ -84,22 +82,23 @@ LOGIC
 - imporve the `trinnTax` logic
 - add input validation
 
-- add possibility to select month/year calculations
-  - if monthly - show yearly income in visa versa
-- show monthly pay before and after tax
 - regex numbers to xxx xxx xxx, xx xxxx
 - adding values to input also adds value to url
 - show relevant info from the calculations
+- what if number is negative
+
+REACT
+- Create components
+
+
+### Version 2
+- add all types of Skattesatser
+- show monthly pay before and after tax
 
 FUN TO HAVE
 - Slik brukes skattepengene https://www.ssb.no/offentlig-sektor/faktaside/slik-brukes-skattepengene
 - add age - pensjonister / unge / vanlige?
 
 
-
 - Særfradrag enslige forsørgere: https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
 
-
-
-### Version 2
-- add all types of Skattesatser

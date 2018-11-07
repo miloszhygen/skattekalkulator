@@ -3,6 +3,10 @@
  * returns an object with calculations for tax for chosen income
  */
 
+// Import setTypes
+import { YEARLY, MONTHLY } from './../helpers/setTypes'
+
+
 // Skattesatser
 const taxValuesConfig = {
   frikortgrense: 55000,
@@ -63,13 +67,13 @@ const calculateFormueTax = (formue, married) => {
     Formuesskatt til kommunen GIFT
     -------------------------------
       Skatteklasse 0 	0 og over	0,7 %
-      Skatteklasse 1	0 -  2 960 000 kroner	0,0 %
-      Skatteklasse 1	 2 960 000 kroner og over	0,7 %
+      Skatteklasse 1	0 -  2960000 kroner	0,0 %
+      Skatteklasse 1	 2960000 kroner og over	0,7 %
 
       Formuesskatt til staten
       Skatteklasse 0, 1
-      0 -  2 960 000 kroner	0,0 %
-      2 960 000 kroner og over	0,15 %
+      0 -  2960000 kroner	0,0 %
+      2960000 kroner og over	0,15 %
 
   */
   const { formueTaxStatSats, formueTaxKomSats, formueSkattGrense } = taxValuesConfig;
@@ -170,30 +174,33 @@ const trinnTax = (income, finnmarksfradrag) => {
 }
 
 export const calculateTax = (incomeData) => {
-  const { income = 0, finnmarksfradrag = false, nettoFormue = 0, married = false, fradrag = 0, kapital = 0  } = incomeData
-  
+  const { income = 0, finnmarksfradrag = false, nettoFormue = 0, married = false, fradrag = 0, kapital = 0, incomePr = YEARLY  } = incomeData
+
   const { personfradrag } = taxValuesConfig;
   // Make sure skattPercent is right depending on if you live in Finnmark or not, if so, also add finnmarksfradragValue with corresponding value from taxValuesConfig
   const { finnmarksfradragValue, skatteSats } = rightToFinnmarksfradrag(finnmarksfradrag)
+  // Set income based on yearly or monthly income
+  let calculatedIncome = (incomePr === YEARLY) ? income : income * 12
   // Tax base is the value you get after substracting minstefradag (45% of income, max 97610 NOK, min 31800 NOK) and personfradrag (54750 NOK)
-  const taxBase = income - calculatedMinstefradrag(income) - personfradrag  - finnmarksfradragValue - fradrag + kapital;
+  const taxBase = calculatedIncome - calculatedMinstefradrag(calculatedIncome) - personfradrag  - finnmarksfradragValue - fradrag + kapital;
   // Make sure the base tax value is grater than 0, if so, calculate 23% of the value (23% is the 2018 base tax constant )
   const validTaxBase = (taxBase > 0) ? (taxBase * skatteSats) : 0;
   // Add social security tax to the calculated base tax
-  const taxWithoutTrinn = validTaxBase + socialSecurityTax(income);
+  const taxWithoutTrinn = validTaxBase + socialSecurityTax(calculatedIncome);
   // Check if the income is above the frikort limit that is 55000 NOK, if not return 0 if else, return the tax with trinn tax
-  const taxToPay = (aboveFrikortLimit(income))
+  const taxToPay = (aboveFrikortLimit(calculatedIncome))
     ? 0 + calculateFormueTax(nettoFormue,married).formueTotal
-    : taxWithoutTrinn + trinnTax(income, finnmarksfradrag).totalTrinnSkatt + calculateFormueTax(nettoFormue,married).formueTotal;
+    : taxWithoutTrinn + trinnTax(calculatedIncome, finnmarksfradrag).totalTrinnSkatt + calculateFormueTax(nettoFormue,married).formueTotal;
 
   return {
-    income: income,
+    income: calculatedIncome,
+    incomeMonthlyNetto:((incomePr === MONTHLY)? income : income/12),
     tax: Math.round(taxToPay),
     ...calculateFormueTax(nettoFormue,married),
     taxBase: taxBase,
     taxBeforeTrinn: taxWithoutTrinn,
-    minstefradrag: calculatedMinstefradrag(income),
-    socialSecurityTax: socialSecurityTax(income),
-    trinnTax: trinnTax(income),
+    minstefradrag: calculatedMinstefradrag(calculatedIncome),
+    socialSecurityTax: socialSecurityTax(calculatedIncome),
+    trinnTax: trinnTax(calculatedIncome),
   }
 };

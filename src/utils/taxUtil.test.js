@@ -1,4 +1,6 @@
 import { calculateTax } from './taxUtil';
+// Import setTypes
+import { MONTHLY } from './../helpers/setTypes'
 
 describe('tax calculator 2018', () => {
   // describe('have right to Finnmarksfradrag', () => {
@@ -27,6 +29,24 @@ describe('tax calculator 2018', () => {
     })
   })
 
+
+
+  describe('Montly income', () => {
+    it('Income pr month 60k', () => {
+      const income = {
+        income: 60000,
+        finnmarksfradrag: false,
+        nettoFormue: 2000000,
+        married: false,
+        fradrag: 120000,
+        incomePr: MONTHLY
+      };
+      const expectedTax = 194389;
+      const recievedTax = calculateTax(income).tax;
+
+      expect(recievedTax).toEqual(expectedTax);
+    })
+  })
 
 
 
