@@ -69,26 +69,27 @@ _Set income to 648000 NOK and Formue to 3500000_
 eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
 
 ## TODO
-
-x add possibility to select month/year calculations
-  x if monthly - show yearly income in visa versa
-
-
+x add input validation
+x what if number is negative
+x regex numbers to xxx xxx xxx, xx xxxx
+- add montly/yearly to url
 
 STYLE
 - add awesome and cool styling - _Lets make it popp!_
 
 LOGIC
 - imporve the `trinnTax` logic
-- add input validation
 
-- regex numbers to xxx xxx xxx, xx xxxx
 - adding values to input also adds value to url
 - show relevant info from the calculations
-- what if number is negative
+- splitt all numbers using splitNumberOnKiloUtil
 
 REACT
-- Create components
+- Create components for the different parts
+
+
+
+
 
 
 ### Version 2

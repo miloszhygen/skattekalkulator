@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 //Import utils
 import { calculateTax } from './utils/taxUtil'
 import { urlSearchParameterUtil } from './utils/urlSearchParameterUtil'
+import { splitNumberOnKiloUtil } from './utils/splitNumberOnKiloUtil'
 // import './Skatt.css';
 
 // Import setTypes
@@ -52,9 +53,6 @@ class Skatt extends Component {
     })})
   }
 
-  // handleOptionChange (changeEvent) {
-  //   this.setState({ selectedOption: changeEvent.target.value });
-  // }
 
   render () {
     const {
@@ -243,7 +241,7 @@ class Skatt extends Component {
         <hr/>
         { (income > 0 ) &&
           <div>
-            <h3>Skatt: {tax} kr </h3>
+            <h3>Skatt: {splitNumberOnKiloUtil(tax)} kr </h3>
             <p>{stateFinnmark && '(Finnmarksfradrag)'}</p>
             <hr/>
             <p>Hvorav:</p>
@@ -261,6 +259,11 @@ class Skatt extends Component {
               </div>
             }
             <p>Minstefradrag: {minstefradrag} kr</p>
+
+            <div style={{width:'250px', wordWrap:' break-word'}}>
+              {JSON.stringify(this.state.taxToPay)}
+            </div>
+            <br/>
           </div>
         }
         <small>*Kalkulatoren gjelder ikke bosatte i Finmark og Nord-Troms. Den tar heller ikke med i kalkulasjonene særfradrag enslige forsørgere.</small>
