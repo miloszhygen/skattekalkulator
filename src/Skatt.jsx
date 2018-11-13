@@ -16,7 +16,7 @@ import { YEARLY, MONTHLY } from './helpers/setTypes'
 class Skatt extends Component {
   constructor () {
     super()
-    const {income = 0,formue = 0, finnmark, married, fradrag = 0, kapital = 0} = urlSearchParameterUtil(window.location.search);
+    const {income = 0,formue = 0, finnmark, married, fradrag = 0, kapital = 0, monthly = false} = urlSearchParameterUtil(window.location.search);
     this.state = {
       stateFormue: formue,
       stateIncome: parseInt(income, 10),
@@ -25,7 +25,7 @@ class Skatt extends Component {
       stateFradrag: parseInt(fradrag, 10),
       stateKapital: parseInt(kapital, 10),
       taxToPay: {},
-      incomePr: YEARLY
+      incomePr: (monthly === 'true') ? MONTHLY : YEARLY
     }
   }
 
@@ -91,7 +91,7 @@ class Skatt extends Component {
 
 
         <br/>
-        Helpere:
+        Helpers:
         <br/>
         <a href="?income=600000&formue=2000000&married=true&finnmark=false&fradrag=120000">
           G: 137649</a>
@@ -104,6 +104,10 @@ class Skatt extends Component {
         <br/>
         <a href="?income=600000&formue=2000000&married=false&finnmark=true&fradrag=120000">
           F: 127540</a>
+        <br/>
+        
+        <a href="?income=600000&formue=2000000&married=false&finnmark=true&fradrag=120000&monthly=true">
+          F-Montly: 2954037</a>
         <br/>
 
 
