@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-//Import utils
+// Import component
+import Helpers from './components/Helpers'
+import Input from './components/Input'
+import TaxCalculations from './components/TaxCalculations'
+
+// Import utils
 import { calculateTax } from './utils/taxUtil'
 import { urlSearchParameterUtil } from './utils/urlSearchParameterUtil'
 import { splitNumberOnKiloUtil } from './utils/splitNumberOnKiloUtil'
@@ -64,213 +69,95 @@ class Skatt extends Component {
       stateKapital,
       taxToPay: {
         income = 0,
-        formue = 0,
-        tax = 0,
-        socialSecurityTax = 0,
-        minstefradrag = 0,
-        trinnTax:{
-          totalTrinnSkatt = 0,
-          trinnOne = 0,
-          trinnTwo = 0,
-          trinnThree = 0,
-          trinnFour = 0
-        }={}
       }={}
     } = this.state;
 
     return (
       <div>
 
-
-
-
-
-
-
-
-
-
-        <br/>
-        Helpers:
-        <br/>
-        <a href="?income=600000&formue=2000000&married=true&finnmark=false&fradrag=120000">
-          G: 137649</a>
-        <br/>
-        <a href="?income=600000&formue=2000000&married=false&finnmark=false&fradrag=120000">
-          U: 142069</a>
-        <br/>
-        <a href="?income=600000&formue=2000000&married=true&finnmark=true&fradrag=120000">
-          FG: 1231200</a>
-        <br/>
-        <a href="?income=600000&formue=2000000&married=false&finnmark=true&fradrag=120000">
-          F: 127540</a>
-        <br/>
-        
-        <a href="?income=600000&formue=2000000&married=false&finnmark=true&fradrag=120000&monthly=true">
-          F-Montly: 2954037</a>
-        <br/>
-
-
-
-        {/* income: 600000,
-        finnmarksfradrag: true,
-        nettoFormue: 3500000,
-        married: true,
-        fradrag: 200000,
-        kapital: 120000
-
-
-       income: 600000,
-        finnmarksfradrag: true,
-        nettoFormue: 3500000,
-        married: true,
-        fradrag: 200000,
-        kapital: 120000*/}
-
-
-        <a href="?income=600000&formue=3500000&married=true&finnmark=true&fradrag=200000&kapital=120000">KU: 135510</a>
-
-        <hr/>
+        <Helpers/>
 
         <header>
           <h1>Skattekalkulator 2018</h1>
           <h3>Skattekalkulator for allminnelig lønnsintekt*</h3>
         </header>
-        <label>
-          Skriv inn din bruttoinntekt 2018: <br/>
-          <input
-            type="text"
-            name="income"
-            value={stateIncome || ''}
-            onChange={(e)=> this.setState({stateIncome: parseInt(e.target.value,10) || 0})}
-          />
-        </label>
-        <label>
-          <input type="radio" value={YEARLY}
-            checked={this.state.incomePr === YEARLY}
-            onChange={(e) => this.setState({ incomePr: e.target.value })} />
-              Årlig
-        </label>
 
-        <label>
-          <input type="radio" value={MONTHLY}
-            checked={this.state.incomePr === MONTHLY}
-            onChange={(e) => this.setState({ incomePr: e.target.value })} />
-              Månedlig
-        </label>
+
+        <Input
+          title="Skriv inn din bruttoinntekt 2018:"
+          type="text"
+          name="income"
+          value={stateIncome || ''}
+          onChange={(e)=> this.setState({stateIncome: parseInt(e.target.value,10) || 0})}
+        />
+        <Input
+          titleright="Årlig"
+          type="radio"
+          value={YEARLY}
+          checked={this.state.incomePr === YEARLY}
+          onChange={(e) => this.setState({ incomePr: e.target.value })}
+        />
+        <Input
+          titleright="Månedlig"
+          type="radio"
+          value={MONTHLY}
+          checked={this.state.incomePr === MONTHLY}
+          onChange={(e) => this.setState({ incomePr: e.target.value })}
+        />
 
         <br/>
-        {this.state.incomePr === MONTHLY &&
-          <div>Årlig inntekt: {income}</div>
+        {(this.state.incomePr === MONTHLY && income > 0) &&
+          <div>Årlig inntekt: {splitNumberOnKiloUtil(income)} kr</div>
         }
-
         <hr/>
-        <label>
-          <input
-            type="checkbox"
-            value="1000"
-            checked={stateFinnmark}
-            onChange={()=> this.setState({stateFinnmark:!stateFinnmark})}
-          />
-           Rett til Finnmarksfradrags
-        </label>
 
-        <br/>
-        <label>
-          <input
-            type="checkbox"
-            value="1000"
-            checked={stateMarried}
-            onChange={()=> this.setState({stateMarried: !stateMarried})}
-          />
-          Gift {stateMarried}
-        </label>
+        <Input
+          titleright="Rett til Finnmarksfradrags"
+          type="checkbox"
+          value="1000"
+          checked={stateFinnmark}
+          onChange={()=> this.setState({stateFinnmark:!stateFinnmark})}
+        />
+        <Input
+          titleright="Gift"
+          type="checkbox"
+          value="1000"
+          checked={stateMarried}
+          onChange={()=> this.setState({stateMarried: !stateMarried})}
+        />
         <br/>
 
-
-
-        <label>
-          Rente og kapitalinntekter <br/>
-          <input
-            type="text"
-            name="formue"
-            value={stateKapital || ''}
-            onChange={(e)=> this.setState({stateKapital: parseInt(e.target.value,10) || 0  })}
-          />
-          <br/>
-          <small>Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.</small>
-        </label>
-
-
-
-
-
+        <Input
+          title="Rente og kapitalinntekter"
+          type="text"
+          name="formue"
+          value={stateKapital || ''}
+          onChange={(e)=> this.setState({stateKapital: parseInt(e.target.value,10) || 0  })}
+          text="Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond."
+        />
 
         <br/>
-        <label>
-          Din netto formue <br/>
-          <input
-            type="text"
-            name="formue"
-            value={stateFormue || ''}
-            onChange={(e)=> this.setState({stateFormue: parseInt(e.target.value,10) || 0 })}
-          />
-          <br/>
-          <small>Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.</small>
-        </label>
-
-
+        <Input
+          title="Din netto formue"
+          type="text"
+          name="formue"
+          value={stateFormue || ''}
+          onChange={(e)=> this.setState({stateFormue: parseInt(e.target.value,10) || 0 })}
+          text="Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue."
+        />
 
         <br/>
 
-
-        <label>
-         Fradrag (ikke minstefradrag) <br/>
-          <input
-            type="text"
-            name="fradrag"
-            value={stateFradrag || ''}
-            onChange={(e)=>this.setState({ stateFradrag:e.target.value})}
-          />
-          <br/>
-          <small>Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.</small>
-        </label>
-
-
-
-
-
-
-
+        <Input
+          title="Fradrag (ikke minstefradrag "
+          type="text"
+          name="fradrag"
+          value={stateFradrag || ''}
+          onChange={(e)=>this.setState({ stateFradrag:e.target.value})}
+          text="Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her."
+        />
         <hr/>
-        { (income > 0 ) &&
-          <div>
-            <h3>Skatt: {splitNumberOnKiloUtil(tax)} kr </h3>
-            <p>{stateFinnmark && '(Finnmarksfradrag)'}</p>
-            <hr/>
-            <p>Hvorav:</p>
-            <p>
-              <b> Trygdeavgift: {socialSecurityTax} kr</b>
-            </p>
-            <p>Trinnskatt: {totalTrinnSkatt} kr</p>
-            {(totalTrinnSkatt > 0) &&
-              <div className="box--margin-left">
-                <p>Fordelt slik:</p>
-                {(trinnOne > 0) && <p> Trinn 1: {trinnOne} kr</p>}
-                {(trinnTwo > 0) && <p> Trinn 2: {trinnTwo} kr</p>}
-                {(trinnThree > 0) && <p> Trinn 3: {trinnThree} kr</p>}
-                {(trinnFour > 0) && <p> Trinn 3: {trinnFour} kr</p>}
-              </div>
-            }
-            <p>Minstefradrag: {minstefradrag} kr</p>
-
-            <div style={{width:'250px', wordWrap:' break-word'}}>
-              {JSON.stringify(this.state.taxToPay)}
-            </div>
-            <br/>
-          </div>
-        }
-        <small>*Kalkulatoren gjelder ikke bosatte i Finmark og Nord-Troms. Den tar heller ikke med i kalkulasjonene særfradrag enslige forsørgere.</small>
+        <TaxCalculations {...this.state} />
       </div>
     );
   }
