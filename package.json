@@ -10,6 +10,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "eslint-plugin-jest": "^21.26.2",
+    "identity-obj-proxy": "^3.0.0",
     "jest-puppeteer": "^3.4.0",
     "node-sass": "^4.10.0",
     "puppeteer": "^1.9.0",
@@ -27,6 +28,12 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/__mocks__/styleMock.js",
+      "\\.(gif|ttf|eot|svg)$": "<rootDir>/__mocks__/fileMock.js"
+    }
   },
   "browserslist": [
     ">0.2%",
