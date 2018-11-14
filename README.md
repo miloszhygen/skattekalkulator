@@ -85,36 +85,31 @@ eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonn
 
 
 ## TODO
-x splitt all numbers using splitNumberOnKiloUtil
-x make Calculations component work
 
 STYLE
-
-# Im here 
 - NEXT --> add awesome and cool styling - _Lets make it popp!_
   :::> I have added scss possibilities
   React scss DOCS: https://facebook.github.io/create-react-app/docs/adding-a-sass-stylesheet
 
 
 REACT
-x Create components for the different parts
 - make e2e tests work
-
 
 - share the calculator using a create link button?
   - create the URL that is necessary
 
-
 - show relevant info from the calculations
+
+LOGIC
+- imporve the `trinnTax` logic
+- adding values to input also adds value to url
 
 
 ### Version 2
 - add all types of Skattesatser
 - show monthly pay before and after tax
 
-LOGIC
-- imporve the `trinnTax` logic
-- adding values to input also adds value to url
+
 **********
 
 

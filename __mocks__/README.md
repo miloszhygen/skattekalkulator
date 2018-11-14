@@ -1,4 +1,4 @@
-To run jest tests with scss import makes the tests fail. 
+To run jest tests with scss import makes the tests fail.
 
 
 
