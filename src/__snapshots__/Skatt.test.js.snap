@@ -18,39 +18,7 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <br />,
-        "Helpere:",
-        <br />,
-        <a
-          href="?income=600000&formue=2000000&married=true&finnmark=false&fradrag=120000"
-        >
-          G: 137649
-        </a>,
-        <br />,
-        <a
-          href="?income=600000&formue=2000000&married=false&finnmark=false&fradrag=120000"
-        >
-          U: 142069
-        </a>,
-        <br />,
-        <a
-          href="?income=600000&formue=2000000&married=true&finnmark=true&fradrag=120000"
-        >
-          FG: 1231200
-        </a>,
-        <br />,
-        <a
-          href="?income=600000&formue=2000000&married=false&finnmark=true&fradrag=120000"
-        >
-          F: 127540
-        </a>,
-        <br />,
-        <a
-          href="?income=600000&formue=3500000&married=true&finnmark=true&fradrag=200000&kapital=120000"
-        >
-          KU: 135510
-        </a>,
-        <hr />,
+        <Helpers />,
         <header>
           <h1>
             Skattekalkulator 2018
@@ -59,106 +27,102 @@ ShallowWrapper {
             Skattekalkulator for allminnelig lønnsintekt*
           </h3>
         </header>,
-        <label>
-          Skriv inn din bruttoinntekt 2018: 
-          <br />
-          <input
-            name="income"
-            onChange={[Function]}
-            type="text"
-            value=""
-          />
-        </label>,
-        <label>
-          <input
-            checked={true}
-            onChange={[Function]}
-            type="radio"
-            value="YEARLY"
-          />
-          Årlig
-        </label>,
-        <label>
-          <input
-            checked={false}
-            onChange={[Function]}
-            type="radio"
-            value="MONTHLY"
-          />
-          Månedlig
-        </label>,
+        <Input
+          name="income"
+          onChange={[Function]}
+          title="Skriv inn din bruttoinntekt 2018:"
+          type="text"
+          value=""
+        />,
+        <Input
+          checked={true}
+          onChange={[Function]}
+          titleright="Årlig"
+          type="radio"
+          value="YEARLY"
+        />,
+        <Input
+          checked={false}
+          onChange={[Function]}
+          titleright="Månedlig"
+          type="radio"
+          value="MONTHLY"
+        />,
         <br />,
         false,
         <hr />,
-        <label>
-          <input
-            checked={false}
-            onChange={[Function]}
-            type="checkbox"
-            value="1000"
-          />
-          Rett til Finnmarksfradrags
-        </label>,
+        <Input
+          checked={false}
+          onChange={[Function]}
+          titleright="Rett til Finnmarksfradrags"
+          type="checkbox"
+          value="1000"
+        />,
+        <Input
+          checked={false}
+          onChange={[Function]}
+          titleright="Gift"
+          type="checkbox"
+          value="1000"
+        />,
         <br />,
-        <label>
-          <input
-            checked={false}
-            onChange={[Function]}
-            type="checkbox"
-            value="1000"
-          />
-          Gift 
-        </label>,
+        <Input
+          name="formue"
+          onChange={[Function]}
+          text="Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond."
+          title="Rente og kapitalinntekter"
+          type="text"
+          value=""
+        />,
         <br />,
-        <label>
-          Rente og kapitalinntekter 
-          <br />
-          <input
-            name="formue"
-            onChange={[Function]}
-            type="text"
-            value=""
-          />
-          <br />
-          <small>
-            Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.
-          </small>
-        </label>,
+        <Input
+          name="formue"
+          onChange={[Function]}
+          text="Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue."
+          title="Din netto formue"
+          type="text"
+          value=""
+        />,
         <br />,
-        <label>
-          Din netto formue 
-          <br />
-          <input
-            name="formue"
-            onChange={[Function]}
-            type="text"
-            value=""
-          />
-          <br />
-          <small>
-            Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.
-          </small>
-        </label>,
-        <br />,
-        <label>
-          Fradrag (ikke minstefradrag) 
-          <br />
-          <input
-            name="fradrag"
-            onChange={[Function]}
-            type="text"
-            value=""
-          />
-          <br />
-          <small>
-            Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.
-          </small>
-        </label>,
+        <Input
+          name="fradrag"
+          onChange={[Function]}
+          text="Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her."
+          title="Fradrag (ikke minstefradrag "
+          type="text"
+          value=""
+        />,
         <hr />,
-        false,
-        <small>
-          *Kalkulatoren gjelder ikke bosatte i Finmark og Nord-Troms. Den tar heller ikke med i kalkulasjonene særfradrag enslige forsørgere.
-        </small>,
+        <TaxCalculations
+          incomePr="YEARLY"
+          stateFinnmark={false}
+          stateFormue={0}
+          stateFradrag={0}
+          stateIncome={0}
+          stateKapital={0}
+          stateMarried={false}
+          taxToPay={
+            Object {
+              "formueTotal": 0,
+              "income": 0,
+              "incomeMonthlyNetto": 0,
+              "kommune": 0,
+              "minstefradrag": 31800,
+              "socialSecurityTax": 0,
+              "stat": 0,
+              "tax": 0,
+              "taxBase": -86550,
+              "taxBeforeTrinn": 0,
+              "trinnTax": Object {
+                "totalTrinnSkatt": 0,
+                "trinnFour": 0,
+                "trinnOne": 0,
+                "trinnThree": 0,
+                "trinnTwo": 0,
+              },
+            }
+          }
+        />,
       ],
     },
     "ref": null,
@@ -166,126 +130,11 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "class",
         "props": Object {},
         "ref": null,
         "rendered": null,
-        "type": "br",
-      },
-      "Helpere:",
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": "br",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "G: 137649",
-          "href": "?income=600000&formue=2000000&married=true&finnmark=false&fradrag=120000",
-        },
-        "ref": null,
-        "rendered": "G: 137649",
-        "type": "a",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": "br",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "U: 142069",
-          "href": "?income=600000&formue=2000000&married=false&finnmark=false&fradrag=120000",
-        },
-        "ref": null,
-        "rendered": "U: 142069",
-        "type": "a",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": "br",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "FG: 1231200",
-          "href": "?income=600000&formue=2000000&married=true&finnmark=true&fradrag=120000",
-        },
-        "ref": null,
-        "rendered": "FG: 1231200",
-        "type": "a",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": "br",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "F: 127540",
-          "href": "?income=600000&formue=2000000&married=false&finnmark=true&fradrag=120000",
-        },
-        "ref": null,
-        "rendered": "F: 127540",
-        "type": "a",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": "br",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": "KU: 135510",
-          "href": "?income=600000&formue=3500000&married=true&finnmark=true&fradrag=200000&kapital=120000",
-        },
-        "ref": null,
-        "rendered": "KU: 135510",
-        "type": "a",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": "hr",
+        "type": [Function],
       },
       Object {
         "instance": null,
@@ -331,117 +180,47 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": Array [
-            "Skriv inn din bruttoinntekt 2018: ",
-            <br />,
-            <input
-              name="income"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />,
-          ],
+          "name": "income",
+          "onChange": [Function],
+          "title": "Skriv inn din bruttoinntekt 2018:",
+          "type": "text",
+          "value": "",
         },
         "ref": null,
-        "rendered": Array [
-          "Skriv inn din bruttoinntekt 2018: ",
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": "br",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "name": "income",
-              "onChange": [Function],
-              "type": "text",
-              "value": "",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-        ],
-        "type": "label",
+        "rendered": null,
+        "type": [Function],
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": Array [
-            <input
-              checked={true}
-              onChange={[Function]}
-              type="radio"
-              value="YEARLY"
-            />,
-            "Årlig",
-          ],
+          "checked": true,
+          "onChange": [Function],
+          "titleright": "Årlig",
+          "type": "radio",
+          "value": "YEARLY",
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "checked": true,
-              "onChange": [Function],
-              "type": "radio",
-              "value": "YEARLY",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-          "Årlig",
-        ],
-        "type": "label",
+        "rendered": null,
+        "type": [Function],
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": Array [
-            <input
-              checked={false}
-              onChange={[Function]}
-              type="radio"
-              value="MONTHLY"
-            />,
-            "Månedlig",
-          ],
+          "checked": false,
+          "onChange": [Function],
+          "titleright": "Månedlig",
+          "type": "radio",
+          "value": "MONTHLY",
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "checked": false,
-              "onChange": [Function],
-              "type": "radio",
-              "value": "MONTHLY",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-          "Månedlig",
-        ],
-        "type": "label",
+        "rendered": null,
+        "type": [Function],
       },
       Object {
         "instance": null,
@@ -465,37 +244,32 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": Array [
-            <input
-              checked={false}
-              onChange={[Function]}
-              type="checkbox"
-              value="1000"
-            />,
-            "Rett til Finnmarksfradrags",
-          ],
+          "checked": false,
+          "onChange": [Function],
+          "titleright": "Rett til Finnmarksfradrags",
+          "type": "checkbox",
+          "value": "1000",
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "checked": false,
-              "onChange": [Function],
-              "type": "checkbox",
-              "value": "1000",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-          "Rett til Finnmarksfradrags",
-        ],
-        "type": "label",
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "checked": false,
+          "onChange": [Function],
+          "titleright": "Gift",
+          "type": "checkbox",
+          "value": "1000",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
       },
       Object {
         "instance": null,
@@ -509,39 +283,18 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": Array [
-            <input
-              checked={false}
-              onChange={[Function]}
-              type="checkbox"
-              value="1000"
-            />,
-            "Gift ",
-            false,
-          ],
+          "name": "formue",
+          "onChange": [Function],
+          "text": "Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.",
+          "title": "Rente og kapitalinntekter",
+          "type": "text",
+          "value": "",
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "checked": false,
-              "onChange": [Function],
-              "type": "checkbox",
-              "value": "1000",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-          "Gift ",
-          false,
-        ],
-        "type": "label",
+        "rendered": null,
+        "type": [Function],
       },
       Object {
         "instance": null,
@@ -555,71 +308,18 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": Array [
-            "Rente og kapitalinntekter ",
-            <br />,
-            <input
-              name="formue"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />,
-            <br />,
-            <small>
-              Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.
-            </small>,
-          ],
+          "name": "formue",
+          "onChange": [Function],
+          "text": "Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.",
+          "title": "Din netto formue",
+          "type": "text",
+          "value": "",
         },
         "ref": null,
-        "rendered": Array [
-          "Rente og kapitalinntekter ",
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": "br",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "name": "formue",
-              "onChange": [Function],
-              "type": "text",
-              "value": "",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": "br",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.",
-            },
-            "ref": null,
-            "rendered": "Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.",
-            "type": "small",
-          },
-        ],
-        "type": "label",
+        "rendered": null,
+        "type": [Function],
       },
       Object {
         "instance": null,
@@ -633,149 +333,18 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": Array [
-            "Din netto formue ",
-            <br />,
-            <input
-              name="formue"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />,
-            <br />,
-            <small>
-              Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.
-            </small>,
-          ],
+          "name": "fradrag",
+          "onChange": [Function],
+          "text": "Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.",
+          "title": "Fradrag (ikke minstefradrag ",
+          "type": "text",
+          "value": "",
         },
-        "ref": null,
-        "rendered": Array [
-          "Din netto formue ",
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": "br",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "name": "formue",
-              "onChange": [Function],
-              "type": "text",
-              "value": "",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": "br",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.",
-            },
-            "ref": null,
-            "rendered": "Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.",
-            "type": "small",
-          },
-        ],
-        "type": "label",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {},
         "ref": null,
         "rendered": null,
-        "type": "br",
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "host",
-        "props": Object {
-          "children": Array [
-            "Fradrag (ikke minstefradrag) ",
-            <br />,
-            <input
-              name="fradrag"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />,
-            <br />,
-            <small>
-              Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.
-            </small>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          "Fradrag (ikke minstefradrag) ",
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": "br",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "name": "fradrag",
-              "onChange": [Function],
-              "type": "text",
-              "value": "",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "input",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {},
-            "ref": null,
-            "rendered": null,
-            "type": "br",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.",
-            },
-            "ref": null,
-            "rendered": "Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.",
-            "type": "small",
-          },
-        ],
-        "type": "label",
+        "type": [Function],
       },
       Object {
         "instance": null,
@@ -786,17 +355,41 @@ ShallowWrapper {
         "rendered": null,
         "type": "hr",
       },
-      false,
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": "*Kalkulatoren gjelder ikke bosatte i Finmark og Nord-Troms. Den tar heller ikke med i kalkulasjonene særfradrag enslige forsørgere.",
+          "incomePr": "YEARLY",
+          "stateFinnmark": false,
+          "stateFormue": 0,
+          "stateFradrag": 0,
+          "stateIncome": 0,
+          "stateKapital": 0,
+          "stateMarried": false,
+          "taxToPay": Object {
+            "formueTotal": 0,
+            "income": 0,
+            "incomeMonthlyNetto": 0,
+            "kommune": 0,
+            "minstefradrag": 31800,
+            "socialSecurityTax": 0,
+            "stat": 0,
+            "tax": 0,
+            "taxBase": -86550,
+            "taxBeforeTrinn": 0,
+            "trinnTax": Object {
+              "totalTrinnSkatt": 0,
+              "trinnFour": 0,
+              "trinnOne": 0,
+              "trinnThree": 0,
+              "trinnTwo": 0,
+            },
+          },
         },
         "ref": null,
-        "rendered": "*Kalkulatoren gjelder ikke bosatte i Finmark og Nord-Troms. Den tar heller ikke med i kalkulasjonene særfradrag enslige forsørgere.",
-        "type": "small",
+        "rendered": null,
+        "type": [Function],
       },
     ],
     "type": "div",
@@ -808,39 +401,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <br />,
-          "Helpere:",
-          <br />,
-          <a
-            href="?income=600000&formue=2000000&married=true&finnmark=false&fradrag=120000"
-          >
-            G: 137649
-          </a>,
-          <br />,
-          <a
-            href="?income=600000&formue=2000000&married=false&finnmark=false&fradrag=120000"
-          >
-            U: 142069
-          </a>,
-          <br />,
-          <a
-            href="?income=600000&formue=2000000&married=true&finnmark=true&fradrag=120000"
-          >
-            FG: 1231200
-          </a>,
-          <br />,
-          <a
-            href="?income=600000&formue=2000000&married=false&finnmark=true&fradrag=120000"
-          >
-            F: 127540
-          </a>,
-          <br />,
-          <a
-            href="?income=600000&formue=3500000&married=true&finnmark=true&fradrag=200000&kapital=120000"
-          >
-            KU: 135510
-          </a>,
-          <hr />,
+          <Helpers />,
           <header>
             <h1>
               Skattekalkulator 2018
@@ -849,106 +410,102 @@ ShallowWrapper {
               Skattekalkulator for allminnelig lønnsintekt*
             </h3>
           </header>,
-          <label>
-            Skriv inn din bruttoinntekt 2018: 
-            <br />
-            <input
-              name="income"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />
-          </label>,
-          <label>
-            <input
-              checked={true}
-              onChange={[Function]}
-              type="radio"
-              value="YEARLY"
-            />
-            Årlig
-          </label>,
-          <label>
-            <input
-              checked={false}
-              onChange={[Function]}
-              type="radio"
-              value="MONTHLY"
-            />
-            Månedlig
-          </label>,
+          <Input
+            name="income"
+            onChange={[Function]}
+            title="Skriv inn din bruttoinntekt 2018:"
+            type="text"
+            value=""
+          />,
+          <Input
+            checked={true}
+            onChange={[Function]}
+            titleright="Årlig"
+            type="radio"
+            value="YEARLY"
+          />,
+          <Input
+            checked={false}
+            onChange={[Function]}
+            titleright="Månedlig"
+            type="radio"
+            value="MONTHLY"
+          />,
           <br />,
           false,
           <hr />,
-          <label>
-            <input
-              checked={false}
-              onChange={[Function]}
-              type="checkbox"
-              value="1000"
-            />
-            Rett til Finnmarksfradrags
-          </label>,
+          <Input
+            checked={false}
+            onChange={[Function]}
+            titleright="Rett til Finnmarksfradrags"
+            type="checkbox"
+            value="1000"
+          />,
+          <Input
+            checked={false}
+            onChange={[Function]}
+            titleright="Gift"
+            type="checkbox"
+            value="1000"
+          />,
           <br />,
-          <label>
-            <input
-              checked={false}
-              onChange={[Function]}
-              type="checkbox"
-              value="1000"
-            />
-            Gift 
-          </label>,
+          <Input
+            name="formue"
+            onChange={[Function]}
+            text="Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond."
+            title="Rente og kapitalinntekter"
+            type="text"
+            value=""
+          />,
           <br />,
-          <label>
-            Rente og kapitalinntekter 
-            <br />
-            <input
-              name="formue"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />
-            <br />
-            <small>
-              Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.
-            </small>
-          </label>,
+          <Input
+            name="formue"
+            onChange={[Function]}
+            text="Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue."
+            title="Din netto formue"
+            type="text"
+            value=""
+          />,
           <br />,
-          <label>
-            Din netto formue 
-            <br />
-            <input
-              name="formue"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />
-            <br />
-            <small>
-              Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.
-            </small>
-          </label>,
-          <br />,
-          <label>
-            Fradrag (ikke minstefradrag) 
-            <br />
-            <input
-              name="fradrag"
-              onChange={[Function]}
-              type="text"
-              value=""
-            />
-            <br />
-            <small>
-              Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.
-            </small>
-          </label>,
+          <Input
+            name="fradrag"
+            onChange={[Function]}
+            text="Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her."
+            title="Fradrag (ikke minstefradrag "
+            type="text"
+            value=""
+          />,
           <hr />,
-          false,
-          <small>
-            *Kalkulatoren gjelder ikke bosatte i Finmark og Nord-Troms. Den tar heller ikke med i kalkulasjonene særfradrag enslige forsørgere.
-          </small>,
+          <TaxCalculations
+            incomePr="YEARLY"
+            stateFinnmark={false}
+            stateFormue={0}
+            stateFradrag={0}
+            stateIncome={0}
+            stateKapital={0}
+            stateMarried={false}
+            taxToPay={
+              Object {
+                "formueTotal": 0,
+                "income": 0,
+                "incomeMonthlyNetto": 0,
+                "kommune": 0,
+                "minstefradrag": 31800,
+                "socialSecurityTax": 0,
+                "stat": 0,
+                "tax": 0,
+                "taxBase": -86550,
+                "taxBeforeTrinn": 0,
+                "trinnTax": Object {
+                  "totalTrinnSkatt": 0,
+                  "trinnFour": 0,
+                  "trinnOne": 0,
+                  "trinnThree": 0,
+                  "trinnTwo": 0,
+                },
+              }
+            }
+          />,
         ],
       },
       "ref": null,
@@ -956,126 +513,11 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "class",
           "props": Object {},
           "ref": null,
           "rendered": null,
-          "type": "br",
-        },
-        "Helpere:",
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": "br",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "G: 137649",
-            "href": "?income=600000&formue=2000000&married=true&finnmark=false&fradrag=120000",
-          },
-          "ref": null,
-          "rendered": "G: 137649",
-          "type": "a",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": "br",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "U: 142069",
-            "href": "?income=600000&formue=2000000&married=false&finnmark=false&fradrag=120000",
-          },
-          "ref": null,
-          "rendered": "U: 142069",
-          "type": "a",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": "br",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "FG: 1231200",
-            "href": "?income=600000&formue=2000000&married=true&finnmark=true&fradrag=120000",
-          },
-          "ref": null,
-          "rendered": "FG: 1231200",
-          "type": "a",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": "br",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "F: 127540",
-            "href": "?income=600000&formue=2000000&married=false&finnmark=true&fradrag=120000",
-          },
-          "ref": null,
-          "rendered": "F: 127540",
-          "type": "a",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": "br",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "KU: 135510",
-            "href": "?income=600000&formue=3500000&married=true&finnmark=true&fradrag=200000&kapital=120000",
-          },
-          "ref": null,
-          "rendered": "KU: 135510",
-          "type": "a",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": "hr",
+          "type": [Function],
         },
         Object {
           "instance": null,
@@ -1121,117 +563,47 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": Array [
-              "Skriv inn din bruttoinntekt 2018: ",
-              <br />,
-              <input
-                name="income"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />,
-            ],
+            "name": "income",
+            "onChange": [Function],
+            "title": "Skriv inn din bruttoinntekt 2018:",
+            "type": "text",
+            "value": "",
           },
           "ref": null,
-          "rendered": Array [
-            "Skriv inn din bruttoinntekt 2018: ",
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": "br",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "name": "income",
-                "onChange": [Function],
-                "type": "text",
-                "value": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "input",
-            },
-          ],
-          "type": "label",
+          "rendered": null,
+          "type": [Function],
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": Array [
-              <input
-                checked={true}
-                onChange={[Function]}
-                type="radio"
-                value="YEARLY"
-              />,
-              "Årlig",
-            ],
+            "checked": true,
+            "onChange": [Function],
+            "titleright": "Årlig",
+            "type": "radio",
+            "value": "YEARLY",
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "checked": true,
-                "onChange": [Function],
-                "type": "radio",
-                "value": "YEARLY",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "input",
-            },
-            "Årlig",
-          ],
-          "type": "label",
+          "rendered": null,
+          "type": [Function],
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": Array [
-              <input
-                checked={false}
-                onChange={[Function]}
-                type="radio"
-                value="MONTHLY"
-              />,
-              "Månedlig",
-            ],
+            "checked": false,
+            "onChange": [Function],
+            "titleright": "Månedlig",
+            "type": "radio",
+            "value": "MONTHLY",
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "checked": false,
-                "onChange": [Function],
-                "type": "radio",
-                "value": "MONTHLY",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "input",
-            },
-            "Månedlig",
-          ],
-          "type": "label",
+          "rendered": null,
+          "type": [Function],
         },
         Object {
           "instance": null,
@@ -1255,37 +627,32 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": Array [
-              <input
-                checked={false}
-                onChange={[Function]}
-                type="checkbox"
-                value="1000"
-              />,
-              "Rett til Finnmarksfradrags",
-            ],
+            "checked": false,
+            "onChange": [Function],
+            "titleright": "Rett til Finnmarksfradrags",
+            "type": "checkbox",
+            "value": "1000",
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "checked": false,
-                "onChange": [Function],
-                "type": "checkbox",
-                "value": "1000",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "input",
-            },
-            "Rett til Finnmarksfradrags",
-          ],
-          "type": "label",
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "checked": false,
+            "onChange": [Function],
+            "titleright": "Gift",
+            "type": "checkbox",
+            "value": "1000",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
         },
         Object {
           "instance": null,
@@ -1299,39 +666,18 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": Array [
-              <input
-                checked={false}
-                onChange={[Function]}
-                type="checkbox"
-                value="1000"
-              />,
-              "Gift ",
-              false,
-            ],
+            "name": "formue",
+            "onChange": [Function],
+            "text": "Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.",
+            "title": "Rente og kapitalinntekter",
+            "type": "text",
+            "value": "",
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "checked": false,
-                "onChange": [Function],
-                "type": "checkbox",
-                "value": "1000",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "input",
-            },
-            "Gift ",
-            false,
-          ],
-          "type": "label",
+          "rendered": null,
+          "type": [Function],
         },
         Object {
           "instance": null,
@@ -1345,71 +691,18 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": Array [
-              "Rente og kapitalinntekter ",
-              <br />,
-              <input
-                name="formue"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />,
-              <br />,
-              <small>
-                Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.
-              </small>,
-            ],
+            "name": "formue",
+            "onChange": [Function],
+            "text": "Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.",
+            "title": "Din netto formue",
+            "type": "text",
+            "value": "",
           },
           "ref": null,
-          "rendered": Array [
-            "Rente og kapitalinntekter ",
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": "br",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "name": "formue",
-                "onChange": [Function],
-                "type": "text",
-                "value": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "input",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": "br",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.",
-              },
-              "ref": null,
-              "rendered": "Rente- og kapitalinntekter er typisk renten på bankinnskudd, avkastning på pengemarkedsfond og obligasjonsfond, samt gevinst ved salg av aksjer og aksjefond.",
-              "type": "small",
-            },
-          ],
-          "type": "label",
+          "rendered": null,
+          "type": [Function],
         },
         Object {
           "instance": null,
@@ -1423,149 +716,18 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": Array [
-              "Din netto formue ",
-              <br />,
-              <input
-                name="formue"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />,
-              <br />,
-              <small>
-                Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.
-              </small>,
-            ],
+            "name": "fradrag",
+            "onChange": [Function],
+            "text": "Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.",
+            "title": "Fradrag (ikke minstefradrag ",
+            "type": "text",
+            "value": "",
           },
-          "ref": null,
-          "rendered": Array [
-            "Din netto formue ",
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": "br",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "name": "formue",
-                "onChange": [Function],
-                "type": "text",
-                "value": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "input",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": "br",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.",
-              },
-              "ref": null,
-              "rendered": "Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue.",
-              "type": "small",
-            },
-          ],
-          "type": "label",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {},
           "ref": null,
           "rendered": null,
-          "type": "br",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              "Fradrag (ikke minstefradrag) ",
-              <br />,
-              <input
-                name="fradrag"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />,
-              <br />,
-              <small>
-                Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.
-              </small>,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            "Fradrag (ikke minstefradrag) ",
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": "br",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "name": "fradrag",
-                "onChange": [Function],
-                "type": "text",
-                "value": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "input",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {},
-              "ref": null,
-              "rendered": null,
-              "type": "br",
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": "Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.",
-              },
-              "ref": null,
-              "rendered": "Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.",
-              "type": "small",
-            },
-          ],
-          "type": "label",
+          "type": [Function],
         },
         Object {
           "instance": null,
@@ -1576,17 +738,41 @@ ShallowWrapper {
           "rendered": null,
           "type": "hr",
         },
-        false,
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": "*Kalkulatoren gjelder ikke bosatte i Finmark og Nord-Troms. Den tar heller ikke med i kalkulasjonene særfradrag enslige forsørgere.",
+            "incomePr": "YEARLY",
+            "stateFinnmark": false,
+            "stateFormue": 0,
+            "stateFradrag": 0,
+            "stateIncome": 0,
+            "stateKapital": 0,
+            "stateMarried": false,
+            "taxToPay": Object {
+              "formueTotal": 0,
+              "income": 0,
+              "incomeMonthlyNetto": 0,
+              "kommune": 0,
+              "minstefradrag": 31800,
+              "socialSecurityTax": 0,
+              "stat": 0,
+              "tax": 0,
+              "taxBase": -86550,
+              "taxBeforeTrinn": 0,
+              "trinnTax": Object {
+                "totalTrinnSkatt": 0,
+                "trinnFour": 0,
+                "trinnOne": 0,
+                "trinnThree": 0,
+                "trinnTwo": 0,
+              },
+            },
           },
           "ref": null,
-          "rendered": "*Kalkulatoren gjelder ikke bosatte i Finmark og Nord-Troms. Den tar heller ikke med i kalkulasjonene særfradrag enslige forsørgere.",
-          "type": "small",
+          "rendered": null,
+          "type": [Function],
         },
       ],
       "type": "div",
