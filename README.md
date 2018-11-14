@@ -14,7 +14,7 @@ You also need [Yarn](https://yarnpkg.com/lang/en/) installed.
 ## Start the app in develop mode
 `yarn install`
 
-`yarn start`
+`yarn dev`
 
 ## Building the app
 `yarn build`
@@ -24,6 +24,20 @@ The app uses [jest](https://jestjs.io/) for testing.
 
 `yarn test`
 
+In watch mode
+
+`yarn test:local`
+
+### E2E tests
+Running e2e tests
+
+`yarn test:e2e"`
+
+Running e2e tests in watch mode
+
+`yarn test:e2e:local`
+
+
 ## Url parameters
 [http://localhost:3000/?income=600000&formue=3500000&married=true&finnmark=true](http://localhost:3000/?income=600000&formue=3500000&married=true&finnmark=true)
 
@@ -32,10 +46,9 @@ The app uses [jest](https://jestjs.io/) for testing.
 - formue: int
 - married: bool
 - finnmark: bool
-- fradrag
-- age
-
-
+- fradrag: int
+- kapital: int
+- monthly: bool
 
 ## Demo
 _No set income_
@@ -72,23 +85,27 @@ eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonn
 
 
 ## TODO
-- show relevant info from the calculations
-  x splitt all numbers using splitNumberOnKiloUtil
-- make Calculations component work
+x splitt all numbers using splitNumberOnKiloUtil
+x make Calculations component work
 
 STYLE
-- add awesome and cool styling - _Lets make it popp!_
+
+# Im here 
+- NEXT --> add awesome and cool styling - _Lets make it popp!_
+  :::> I have added scss possibilities
+  React scss DOCS: https://facebook.github.io/create-react-app/docs/adding-a-sass-stylesheet
 
 
 REACT
-- Create components for the different parts
+x Create components for the different parts
 - make e2e tests work
 
 
-- share this calculator
+- share the calculator using a create link button?
   - create the URL that is necessary
 
 
+- show relevant info from the calculations
 
 
 ### Version 2

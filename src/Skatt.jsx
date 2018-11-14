@@ -10,11 +10,10 @@ import TaxCalculations from './components/TaxCalculations'
 import { calculateTax } from './utils/taxUtil'
 import { urlSearchParameterUtil } from './utils/urlSearchParameterUtil'
 import { splitNumberOnKiloUtil } from './utils/splitNumberOnKiloUtil'
-// import './Skatt.css';
+import './Skatt.scss';
 
 // Import setTypes
 import { YEARLY, MONTHLY } from './helpers/setTypes'
-
 
 // TODO: Proptypes
 
@@ -74,7 +73,6 @@ class Skatt extends Component {
 
     return (
       <div>
-
         <Helpers/>
 
         <header>
