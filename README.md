@@ -39,7 +39,7 @@ The app uses [jest](https://jestjs.io/) for testing.
 
 ## Demo
 _No set income_
-[skattekalkulator.surge.sh](skattekalkulator.surge.sh)
+[http://skattekalkulator.surge.sh](skattekalkulator.surge.sh)
 
 _Set income to 50000 NOK_
 [http://skattekalkulator.surge.sh/?income=50000](http://skattekalkulator.surge.sh/?income=50000)
@@ -68,25 +68,25 @@ _Set income to 648000 NOK and Formue to 3500000_
 
 eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonnsmottakere-
 
+
+
+
 ## TODO
-x NEXT --> add montly/yearly to url
-
 - show relevant info from the calculations
-  - splitt all numbers using splitNumberOnKiloUtil
-
-
+  x splitt all numbers using splitNumberOnKiloUtil
+- make Calculations component work
 
 STYLE
 - add awesome and cool styling - _Lets make it popp!_
 
-LOGIC
-- imporve the `trinnTax` logic
-- adding values to input also adds value to url
 
 REACT
 - Create components for the different parts
 - make e2e tests work
 
+
+- share this calculator
+  - create the URL that is necessary
 
 
 
@@ -95,10 +95,14 @@ REACT
 - add all types of Skattesatser
 - show monthly pay before and after tax
 
+LOGIC
+- imporve the `trinnTax` logic
+- adding values to input also adds value to url
+**********
+
+
 FUN TO HAVE
 - Slik brukes skattepengene https://www.ssb.no/offentlig-sektor/faktaside/slik-brukes-skattepengene
 - add age - pensjonister / unge / vanlige?
-
-
 - Særfradrag enslige forsørgere: https://www.smartepenger.no/kalkulatorer/3039-skatteberegning-2018
 
