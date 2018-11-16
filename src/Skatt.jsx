@@ -10,10 +10,15 @@ import TaxCalculations from './components/TaxCalculations'
 import { calculateTax } from './utils/taxUtil'
 import { urlSearchParameterUtil } from './utils/urlSearchParameterUtil'
 import { splitNumberOnKiloUtil } from './utils/splitNumberOnKiloUtil'
+
+// Import styles
 import './Skatt.scss';
 
-// Import setTypes
+// Import helpers
 import { YEARLY, MONTHLY } from './helpers/setTypes'
+import setEnvironment from './helpers/setEnvironment';
+import {getShareUrl} from './utils/getShareUrl';
+
 
 // TODO: Proptypes
 
@@ -36,8 +41,7 @@ class Skatt extends Component {
   componentDidMount () {
     this.updateSkatt()
   }
-
-
+  
   componentDidUpdate (prevProps, prevState) {
     if (JSON.stringify(prevState).localeCompare(JSON.stringify(this.state))) {
       this.updateSkatt()
@@ -46,20 +50,23 @@ class Skatt extends Component {
 
   updateSkatt () {
     const {stateIncome,stateFormue,stateFinnmark,stateMarried,stateFradrag,stateKapital,incomePr} = this.state;
-    this.setState({ taxToPay: calculateTax({
-      income: stateIncome,
-      nettoFormue: stateFormue,
-      finnmarksfradrag: stateFinnmark,
-      married: stateMarried,
-      fradrag: stateFradrag,
-      kapital: stateKapital,
-      incomePr: incomePr,
-    })})
+    this.setState({
+      shareUrl: getShareUrl(this.state),
+      taxToPay: calculateTax({
+        income: stateIncome,
+        nettoFormue: stateFormue,
+        finnmarksfradrag: stateFinnmark,
+        married: stateMarried,
+        fradrag: stateFradrag,
+        kapital: stateKapital,
+        incomePr: incomePr
+      })})
   }
 
 
   render () {
     const {
+      shareUrl,
       stateFinnmark,
       stateIncome,
       stateFormue,
@@ -70,10 +77,9 @@ class Skatt extends Component {
         income = 0,
       }={}
     } = this.state;
-
     return (
       <div>
-        <Helpers/>
+        {(setEnvironment()) && <Helpers/> }
 
         <header>
           <h1>Skattekalkulator 2018</h1>
@@ -140,14 +146,14 @@ class Skatt extends Component {
           type="text"
           name="formue"
           value={stateFormue || ''}
-          onChange={(e)=> this.setState({stateFormue: parseInt(e.target.value,10) || 0 })}
+          onChange={(e)=> this.setStsate({stateFormue: parseInt(e.target.value,10) || 0 })}
           text="Det er netto formue som skal legges inn. Fra og med skatteåret 2017 er det visse formuesobjekter som får en verdsettingsrabatt, samt at disse får tilordnet gjeld. Det er formuen etter fradraget for verdsettingsrabatten, og reduksjonsbeløpet i gjeld som skal legges inn som nettoformue."
         />
 
         <br/>
 
         <Input
-          title="Fradrag (ikke minstefradrag "
+          title="Fradrag (ikke minstefradrag)"
           type="text"
           name="fradrag"
           value={stateFradrag || ''}
@@ -156,6 +162,14 @@ class Skatt extends Component {
         />
         <hr/>
         <TaxCalculations {...this.state} />
+
+        <Input
+          title="DEL"
+          type="text"
+          name="del"
+          onChange={() => null}
+          value={`${window.location.origin}${shareUrl}`}
+        />
       </div>
     );
   }
