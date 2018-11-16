@@ -93,8 +93,8 @@ STYLE
 REACT
 x make e2e tests work
 
-- share the calculator using a create link button?
-  - create the URL that is necessary
+x share the calculator using a create link button?
+x create the URL that is necessary
 
 x show relevant info from the calculations
 
