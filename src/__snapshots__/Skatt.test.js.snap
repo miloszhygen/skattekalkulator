@@ -88,13 +88,14 @@ ShallowWrapper {
           name="fradrag"
           onChange={[Function]}
           text="Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her."
-          title="Fradrag (ikke minstefradrag "
+          title="Fradrag (ikke minstefradrag)"
           type="text"
           value=""
         />,
         <hr />,
         <TaxCalculations
           incomePr="YEARLY"
+          shareUrl="/?married=false&"
           stateFinnmark={false}
           stateFormue={0}
           stateFradrag={0}
@@ -122,6 +123,12 @@ ShallowWrapper {
               },
             }
           }
+        />,
+        <Input
+          name="del"
+          title="DEL"
+          type="text"
+          value="http://localhost/?married=false&"
         />,
       ],
     },
@@ -338,7 +345,7 @@ ShallowWrapper {
           "name": "fradrag",
           "onChange": [Function],
           "text": "Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.",
-          "title": "Fradrag (ikke minstefradrag ",
+          "title": "Fradrag (ikke minstefradrag)",
           "type": "text",
           "value": "",
         },
@@ -361,6 +368,7 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "incomePr": "YEARLY",
+          "shareUrl": "/?married=false&",
           "stateFinnmark": false,
           "stateFormue": 0,
           "stateFradrag": 0,
@@ -386,6 +394,20 @@ ShallowWrapper {
               "trinnTwo": 0,
             },
           },
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "name": "del",
+          "title": "DEL",
+          "type": "text",
+          "value": "http://localhost/?married=false&",
         },
         "ref": null,
         "rendered": null,
@@ -471,13 +493,14 @@ ShallowWrapper {
             name="fradrag"
             onChange={[Function]}
             text="Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her."
-            title="Fradrag (ikke minstefradrag "
+            title="Fradrag (ikke minstefradrag)"
             type="text"
             value=""
           />,
           <hr />,
           <TaxCalculations
             incomePr="YEARLY"
+            shareUrl="/?married=false&"
             stateFinnmark={false}
             stateFormue={0}
             stateFradrag={0}
@@ -505,6 +528,12 @@ ShallowWrapper {
                 },
               }
             }
+          />,
+          <Input
+            name="del"
+            title="DEL"
+            type="text"
+            value="http://localhost/?married=false&"
           />,
         ],
       },
@@ -721,7 +750,7 @@ ShallowWrapper {
             "name": "fradrag",
             "onChange": [Function],
             "text": "Standardfradragene beregnes automatisk. Men har du egne fradrag i tillegg, føres de opp her. De vanligste fradragene er renteutgifter til lån, foreldrefradrag (typisk barnehage og SFO inntil 25.000 kroner for første barn og 15.000 for påfølgende) og pendlerfradrag. Også tap ved salg av aksjer og aksjefond regnes med her.",
-            "title": "Fradrag (ikke minstefradrag ",
+            "title": "Fradrag (ikke minstefradrag)",
             "type": "text",
             "value": "",
           },
@@ -744,6 +773,7 @@ ShallowWrapper {
           "nodeType": "function",
           "props": Object {
             "incomePr": "YEARLY",
+            "shareUrl": "/?married=false&",
             "stateFinnmark": false,
             "stateFormue": 0,
             "stateFradrag": 0,
@@ -769,6 +799,20 @@ ShallowWrapper {
                 "trinnTwo": 0,
               },
             },
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "name": "del",
+            "title": "DEL",
+            "type": "text",
+            "value": "http://localhost/?married=false&",
           },
           "ref": null,
           "rendered": null,
