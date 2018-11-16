@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer';
 let page;
 let browser;
 
-describe('create agreement page', () => {
+describe('test skatt page', () => {
   beforeAll(async () => {
     browser = await puppeteer.launch({
       // Debug mode !
@@ -18,7 +18,7 @@ describe('create agreement page', () => {
     browser.close();
   });
 
-  it('test skatt 600000"', async () => {
+  it('test income 600000"', async () => {
     // await page.waitFor(2000);
     await expect(page).toMatch('Skattekalkulator 2018')
     // await page.waitForSelector('input[name="phone"]');

@@ -85,6 +85,7 @@ eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonn
 
 
 ## TODO
+- remove __mocks__ folder?
 
 STYLE
 - NEXT --> add awesome and cool styling - _Lets make it popp!_
