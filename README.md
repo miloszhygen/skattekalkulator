@@ -89,15 +89,6 @@ eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonn
 STYLE
 - NEXT --> add awesome and cool styling - _Lets make it popp!_
 
-
-REACT
-x make e2e tests work
-
-x share the calculator using a create link button?
-x create the URL that is necessary
-
-x show relevant info from the calculations
-
 LOGIC
 - imporve the `trinnTax` logic
 - adding values to input also adds value to url
