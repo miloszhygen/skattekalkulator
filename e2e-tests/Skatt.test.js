@@ -18,11 +18,13 @@ describe('create agreement page', () => {
     browser.close();
   });
 
-  it('test skatt"', async () => {
-    await page.waitFor(2000);
+  it('test skatt 600000"', async () => {
+    // await page.waitFor(2000);
+    await expect(page).toMatch('Skattekalkulator 2018')
     // await page.waitForSelector('input[name="phone"]');
-    // await expect(page).toFill('input[name="phone"]', 'userPhone')
-    // await expect(page).toMatch('Velg ditt eget leveringssted')
+    await expect(page).toFill('input[name="income"]', '600000')
+    // await page.waitFor(500);
+    await expect(page).toMatch('Skatt: 165 249 kr')
     // await expect(page).toClick('.hw-dropdown__option', {text: 'Terrasse'});
     // await expect(page).toClick('textarea');
     // await expect(page).toMatch(`${'memberName'} (+47) ${'memberPhone'}`)
