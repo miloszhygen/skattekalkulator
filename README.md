@@ -88,17 +88,15 @@ eksempel: https://www.smartepenger.no/kalkulatorer/3040-skatteberegning-for-lonn
 
 STYLE
 - NEXT --> add awesome and cool styling - _Lets make it popp!_
-  :::> I have added scss possibilities
-  React scss DOCS: https://facebook.github.io/create-react-app/docs/adding-a-sass-stylesheet
 
 
 REACT
-- make e2e tests work
+x make e2e tests work
 
 - share the calculator using a create link button?
   - create the URL that is necessary
 
-- show relevant info from the calculations
+x show relevant info from the calculations
 
 LOGIC
 - imporve the `trinnTax` logic
